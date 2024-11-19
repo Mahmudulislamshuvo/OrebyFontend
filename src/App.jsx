@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Header from "./Components/RootLayout/Header";
+import Homepage from "./Pages/HomePage/Homepage";
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <div>
-        <Header />
+        <Homepage />
       </div>
     ),
   },

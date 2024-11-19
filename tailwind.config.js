@@ -19,7 +19,7 @@ export default {
         whitesmoke_F5F5F5: "var(--whitesmoke_F5F5F5)",
         redOrange_FEFAF1: "var(--redOrange_FEFAF1)",
         Snow_text1: "var(--Snow_text1)",
-        blackfull: "var(--blackfull)",
+        text2_black_full: "var(--blackfull)",
         red_DB4444: "var(--red_DB4444)",
         green_00FF66: "var(--green_00FF66)",
         SoftRed_E07575: "var(--SoftRed_E07575)",
