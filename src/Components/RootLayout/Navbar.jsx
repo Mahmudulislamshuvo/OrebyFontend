@@ -51,11 +51,18 @@ const Navbar = () => {
         </div>
         <div className="flex">
           <div className="flex justify-between rounded-md bg-whitesmoke_F5F5F5 px-5 py-3">
-            <input
+            {/* <input
               type="text"
               placeholder="What are you looking for?"
               className="loading-4 rounded bg-whitesmoke_F5F5F5 font-poppins text-xs focus:outline-none"
+            /> */}
+            {/* in upper code problem with text-xs that's the reason I can't see the "?" in placeholder */}
+            <input
+              type="text"
+              placeholder="What are you looking for?"
+              className="w-full rounded bg-whitesmoke_F5F5F5 font-poppins text-sm placeholder-gray-400 focus:outline-none"
             />
+
             <div className="ml-8 text-2xl">
               <LuSearch />
             </div>
