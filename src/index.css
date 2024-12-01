@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    min-height: 100%;
+    /* min-height: 100%; */
     font-family: "Poppins", serif; /* Set default font */
   }
 
@@ -45,6 +45,23 @@
   a {
     text-decoration: none;
     color: inherit;
+  }
+  .cartNotification {
+    position: relative;
+  }
+  .cartNotification::after {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    content: "0";
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: var(--red_DB4444);
+    font-size: medium;
+    line-height: 150%;
+    text-align: center;
+    color: var(--whiteColor);
   }
 }
 

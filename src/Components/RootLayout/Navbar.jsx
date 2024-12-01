@@ -3,7 +3,9 @@ import { LuSearch } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
 import { RiShoppingCart2Line, RiShoppingCartFill } from "react-icons/ri";
-import { FiUser } from "react-icons/fi";
+import { FiShoppingBag, FiUser } from "react-icons/fi";
+import { MdOutlineCancel } from "react-icons/md";
+import { CiLogout, CiStar } from "react-icons/ci";
 
 const Navbar = () => {
   const NavMenu = [
@@ -50,8 +52,8 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <div className="flex">
-          <div className="flex justify-between rounded-md bg-whitesmoke_F5F5F5 px-5 py-3">
+        <div className="flex items-center">
+          <div className="flex items-center justify-between rounded-md bg-whitesmoke_F5F5F5 px-5 py-3">
             {/* <input
               type="text"
               placeholder="What are you looking for?"
@@ -68,16 +70,56 @@ const Navbar = () => {
               <LuSearch />
             </div>
           </div>
-          <div className="ml-6 flex gap-x-4 text-3xl">
-            <span className="cartNotification">
+          <div className="ml-6 flex gap-x-4 text-center text-2xl">
+            <span>
               <GoHeart />
             </span>
-            <span>
+            <span className="cartNotification">
               <RiShoppingCart2Line />
             </span>
-            <span>
-              <FiUser />
-            </span>
+            <div className="relative">
+              <span>
+                <FiUser />
+              </span>
+              <div className="absolute right-6 top-5 flex h-[180px] w-[200px] items-center bg-violet-300 text-whitesmoke_F5F5F5">
+                <div className="flex-col">
+                  <div className="flex items-center">
+                    <span className="text-[25px]">
+                      <FiUser />
+                    </span>
+                    <h4 className="font-poppins text-[14px]">
+                      Manage My Account
+                    </h4>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-[25px]">
+                      <FiShoppingBag />
+                    </span>
+                    <h4 className="font-poppins text-[14px]">My Order</h4>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-[25px]">
+                      <MdOutlineCancel />
+                    </span>
+                    <h4 className="font-poppins text-[14px]">
+                      My Cancellations
+                    </h4>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-[25px]">
+                      <CiStar />
+                    </span>
+                    <h4 className="font-poppins text-[14px]">My Reviews</h4>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-[25px]">
+                      <CiLogout />
+                    </span>
+                    <h4 className="font-poppins text-[14px]">Logout</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
