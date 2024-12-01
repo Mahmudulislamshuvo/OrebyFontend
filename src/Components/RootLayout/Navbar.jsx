@@ -2,7 +2,8 @@ import React from "react";
 import { LuSearch } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
-import { RiShoppingCartFill } from "react-icons/ri";
+import { RiShoppingCart2Line, RiShoppingCartFill } from "react-icons/ri";
+import { FiUser } from "react-icons/fi";
 
 const Navbar = () => {
   const NavMenu = [
@@ -68,8 +69,15 @@ const Navbar = () => {
             </div>
           </div>
           <div className="ml-6 flex gap-x-4 text-3xl">
-            <GoHeart />
-            <RiShoppingCartFill />
+            <span className="cartNotification">
+              <GoHeart />
+            </span>
+            <span>
+              <RiShoppingCart2Line />
+            </span>
+            <span>
+              <FiUser />
+            </span>
           </div>
         </div>
       </div>
