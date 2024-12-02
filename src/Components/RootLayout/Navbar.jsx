@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { LuSearch } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
-import { RiShoppingCart2Line, RiShoppingCartFill } from "react-icons/ri";
+import { RiShoppingCart2Line } from "react-icons/ri";
 import { FiShoppingBag, FiUser } from "react-icons/fi";
 import { MdOutlineCancel } from "react-icons/md";
 import { CiLogout, CiStar } from "react-icons/ci";
 
 const Navbar = () => {
+  const [account, setaccount] = useState(false);
+
+  const AccountDetails = () => {
+    setaccount(!account);
+  };
+
   const NavMenu = [
     {
       id: 1,
@@ -71,54 +77,58 @@ const Navbar = () => {
             </div>
           </div>
           <div className="ml-6 flex gap-x-4 text-center text-2xl">
-            <span>
+            <span className="cursor-pointer">
               <GoHeart />
             </span>
-            <span className="cartNotification">
+            <span className="cartNotification cursor-pointer">
               <RiShoppingCart2Line />
             </span>
             <div className="relative">
-              <span>
+              <span onClick={AccountDetails} className="cursor-pointer">
                 <FiUser />
               </span>
-              <div className="absolute right-6 top-5 flex h-[180px] w-[200px] items-center bg-violet-300 text-whitesmoke_F5F5F5">
-                <div className="flex-col">
-                  <div className="flex items-center">
-                    <span className="text-[25px]">
-                      <FiUser />
-                    </span>
-                    <h4 className="font-poppins text-[14px]">
-                      Manage My Account
-                    </h4>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-[25px]">
-                      <FiShoppingBag />
-                    </span>
-                    <h4 className="font-poppins text-[14px]">My Order</h4>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-[25px]">
-                      <MdOutlineCancel />
-                    </span>
-                    <h4 className="font-poppins text-[14px]">
-                      My Cancellations
-                    </h4>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-[25px]">
-                      <CiStar />
-                    </span>
-                    <h4 className="font-poppins text-[14px]">My Reviews</h4>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-[25px]">
-                      <CiLogout />
-                    </span>
-                    <h4 className="font-poppins text-[14px]">Logout</h4>
+              {account && (
+                <div className="bg-whitesmoke_F5F5F5/30 absolute right-1 top-10 flex h-[180px] w-[230px] items-center rounded-lg bg-black/20 p-4 text-whitesmoke_F5F5F5 shadow-lg backdrop-blur-[150px]">
+                  <div className="py-5 pl-2">
+                    <div className="flex-col gap-y-4">
+                      <div className="flex items-center">
+                        <span className="pr-4 text-[25px]">
+                          <FiUser />
+                        </span>
+                        <h4 className="font-poppins text-[14px]">
+                          Manage My Account
+                        </h4>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="pr-4 text-[25px]">
+                          <FiShoppingBag />
+                        </span>
+                        <h4 className="font-poppins text-[14px]">My Order</h4>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="pr-4 text-[25px]">
+                          <MdOutlineCancel />
+                        </span>
+                        <h4 className="font-poppins text-[14px]">
+                          My Cancellations
+                        </h4>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="pr-4 text-[25px]">
+                          <CiStar />
+                        </span>
+                        <h4 className="font-poppins text-[14px]">My Reviews</h4>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="pr-4 text-[25px]">
+                          <CiLogout />
+                        </span>
+                        <h4 className="font-poppins text-[14px]">Logout</h4>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
