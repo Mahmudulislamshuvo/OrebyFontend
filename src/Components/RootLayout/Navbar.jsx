@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LuSearch } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
@@ -13,6 +13,31 @@ const Navbar = () => {
   const AccountDetails = () => {
     setaccount(!account);
   };
+
+  const AccountRef = useRef(null);
+
+  // useEffect(() => {
+  //   window.addEventListener("click", (event) => {
+  //     if (AccountRef.current.contains(event.target)) {
+  //       setaccount(!account);
+  //     } else {
+  //       setaccount(false);
+  //     }
+  //   });
+  // }, [AccountRef]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (AccountRef.current && !AccountRef.current.contains(event.target)) {
+        setaccount(false);
+      }
+    };
+    window.addEventListener("click", handleClickOutside);
+    // Cleanup function to remove the event listener when the component unmounts.
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const NavMenu = [
     {
@@ -84,47 +109,50 @@ const Navbar = () => {
               <RiShoppingCart2Line />
             </span>
             <div className="relative">
-              <span onClick={AccountDetails} className="cursor-pointer">
+              <span
+                onClick={AccountDetails}
+                ref={AccountRef}
+                className="relative cursor-pointer"
+              >
+                <span className="absolute left-2 top-0 h-8 w-8 rounded-full bg-red_DB4444 opacity-10"></span>
                 <FiUser />
               </span>
               {account && (
-                <div className="bg-whitesmoke_F5F5F5/30 absolute right-1 top-10 flex h-[180px] w-[230px] items-center rounded-lg bg-black/20 p-4 text-whitesmoke_F5F5F5 shadow-lg backdrop-blur-[150px]">
-                  <div className="py-5 pl-2">
-                    <div className="flex-col gap-y-4">
-                      <div className="flex items-center">
-                        <span className="pr-4 text-[25px]">
-                          <FiUser />
-                        </span>
-                        <h4 className="font-poppins text-[14px]">
-                          Manage My Account
-                        </h4>
-                      </div>
-                      <div className="flex items-center">
-                        <span className="pr-4 text-[25px]">
-                          <FiShoppingBag />
-                        </span>
-                        <h4 className="font-poppins text-[14px]">My Order</h4>
-                      </div>
-                      <div className="flex items-center">
-                        <span className="pr-4 text-[25px]">
-                          <MdOutlineCancel />
-                        </span>
-                        <h4 className="font-poppins text-[14px]">
-                          My Cancellations
-                        </h4>
-                      </div>
-                      <div className="flex items-center">
-                        <span className="pr-4 text-[25px]">
-                          <CiStar />
-                        </span>
-                        <h4 className="font-poppins text-[14px]">My Reviews</h4>
-                      </div>
-                      <div className="flex items-center">
-                        <span className="pr-4 text-[25px]">
-                          <CiLogout />
-                        </span>
-                        <h4 className="font-poppins text-[14px]">Logout</h4>
-                      </div>
+                <div className="bg-whitesmoke_F5F5F5/30 absolute right-1 top-10 h-[180px] w-[230px] rounded-lg bg-black/20 py-3 pl-4 text-whitesmoke_F5F5F5 shadow-lg backdrop-blur-[150px]">
+                  <div className="flex-col gap-y-4">
+                    <div className="flex items-center">
+                      <span className="pr-4 text-[25px]">
+                        <FiUser />
+                      </span>
+                      <h4 className="font-poppins text-[14px]">
+                        Manage My Account
+                      </h4>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="pr-4 text-[25px]">
+                        <FiShoppingBag />
+                      </span>
+                      <h4 className="font-poppins text-[14px]">My Order</h4>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="pr-4 text-[25px]">
+                        <MdOutlineCancel />
+                      </span>
+                      <h4 className="font-poppins text-[14px]">
+                        My Cancellations
+                      </h4>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="pr-4 text-[25px]">
+                        <CiStar />
+                      </span>
+                      <h4 className="font-poppins text-[14px]">My Reviews</h4>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="pr-4 text-[25px]">
+                        <CiLogout />
+                      </span>
+                      <h4 className="font-poppins text-[14px]">Logout</h4>
                     </div>
                   </div>
                 </div>
