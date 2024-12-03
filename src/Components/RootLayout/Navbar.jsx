@@ -101,26 +101,25 @@ const Navbar = () => {
               <LuSearch />
             </div>
           </div>
-          <div className="ml-6 flex gap-x-4 text-center text-2xl">
+          <div className="ml-6 flex items-center gap-x-4 text-center text-2xl">
             <span className="cursor-pointer">
               <GoHeart />
             </span>
             <span className="cartNotification cursor-pointer">
               <RiShoppingCart2Line />
             </span>
-            <div className="relative">
+            <div className="relative rounded-full bg-red_DB4444 p-[5px] text-center text-whitesmoke_F5F5F5">
               <span
                 onClick={AccountDetails}
                 ref={AccountRef}
-                className="relative cursor-pointer"
+                className="cursor-pointer"
               >
-                <span className="absolute left-2 top-0 h-8 w-8 rounded-full bg-red_DB4444 opacity-10"></span>
                 <FiUser />
               </span>
               {account && (
-                <div className="bg-whitesmoke_F5F5F5/30 absolute right-1 top-10 h-[180px] w-[230px] rounded-lg bg-black/20 py-3 pl-4 text-whitesmoke_F5F5F5 shadow-lg backdrop-blur-[150px]">
+                <div className="bg-whitesmoke_F5F5F5/30 absolute right-1 top-10 h-[550%] w-[650%] rounded-lg bg-black/20 py-3 text-whitesmoke_F5F5F5 shadow-lg backdrop-blur-[150px]">
                   <div className="flex-col gap-y-4">
-                    <div className="flex items-center">
+                    <div className="flex items-center pl-4 transition-all hover:bg-whiteColor hover:py-1 hover:text-black_363738">
                       <span className="pr-4 text-[25px]">
                         <FiUser />
                       </span>
@@ -128,13 +127,13 @@ const Navbar = () => {
                         Manage My Account
                       </h4>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center pl-4 transition-all hover:bg-whiteColor hover:py-1 hover:text-black_363738">
                       <span className="pr-4 text-[25px]">
                         <FiShoppingBag />
                       </span>
                       <h4 className="font-poppins text-[14px]">My Order</h4>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center pl-4 transition-all hover:bg-whiteColor hover:py-1 hover:text-black_363738">
                       <span className="pr-4 text-[25px]">
                         <MdOutlineCancel />
                       </span>
@@ -142,13 +141,13 @@ const Navbar = () => {
                         My Cancellations
                       </h4>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center pl-4 transition-all hover:bg-whiteColor hover:py-1 hover:text-black_363738">
                       <span className="pr-4 text-[25px]">
                         <CiStar />
                       </span>
                       <h4 className="font-poppins text-[14px]">My Reviews</h4>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center pl-4 transition-all hover:bg-whiteColor hover:py-1 hover:text-black_363738">
                       <span className="pr-4 text-[25px]">
                         <CiLogout />
                       </span>
