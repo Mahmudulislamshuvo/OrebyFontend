@@ -68,7 +68,7 @@ const Navbar = () => {
           <ul className="flex gap-x-12 font-poppins text-base">
             {NavMenu?.map((nav) => (
               <li
-                className="border-Snow_text1 hover:border-b-[4px]"
+                className="border-Snow_text1 transition-all hover:border-b-[4px]"
                 key={"Nav"}
               >
                 <NavLink
@@ -108,11 +108,11 @@ const Navbar = () => {
             <span className="cartNotification cursor-pointer">
               <RiShoppingCart2Line />
             </span>
-            <div className="relative rounded-full bg-red_DB4444 p-[5px] text-center text-whitesmoke_F5F5F5">
+            <div className="relative items-center rounded-[50%] bg-red_DB4444 p-[5px] text-center text-whitesmoke_F5F5F5">
               <span
                 onClick={AccountDetails}
                 ref={AccountRef}
-                className="cursor-pointer"
+                className="h-5 w-5 cursor-pointer leading-none"
               >
                 <FiUser />
               </span>
