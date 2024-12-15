@@ -68,7 +68,7 @@ const Navbar = () => {
           <ul className="flex gap-x-12 font-poppins text-base">
             {NavMenu?.map((nav) => (
               <li
-                className="border-Snow_text1 hover:border-b-[4px]"
+                className="border-Snow_text1 transition-all hover:border-b-[4px]"
                 key={"Nav"}
               >
                 <NavLink
@@ -112,7 +112,7 @@ const Navbar = () => {
               <span
                 onClick={AccountDetails}
                 ref={AccountRef}
-                className="cursor-pointer"
+                className="h-5 w-5 cursor-pointer leading-none"
               >
                 <FiUser />
               </span>
