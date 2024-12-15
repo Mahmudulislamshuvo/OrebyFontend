@@ -108,7 +108,7 @@ const Navbar = () => {
             <span className="cartNotification cursor-pointer">
               <RiShoppingCart2Line />
             </span>
-            <div className="relative rounded-full bg-red_DB4444 p-[5px] text-center text-whitesmoke_F5F5F5">
+            <div className="userRedCircle relative rounded-full bg-red_DB4444 p-[5px] text-center text-whitesmoke_F5F5F5">
               <span
                 onClick={AccountDetails}
                 ref={AccountRef}

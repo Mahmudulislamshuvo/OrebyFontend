@@ -63,6 +63,19 @@
     text-align: center;
     color: var(--whiteColor);
   }
+  /* .userRedCircle::after {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    content: "";
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: var(--red_DB4444);
+    line-height: 150%;
+    text-align: center;
+    color: var(--whiteColor);
+  } */
 }
 
 :root {
