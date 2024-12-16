@@ -10,23 +10,38 @@ export const category = [
     subCategory: true,
   },
   {
-    id: 1,
-    category: "Woman’s Fashion",
+    id: 3,
+    category: "Electronics",
     subCategory: false,
   },
   {
-    id: 1,
-    category: "Woman’s Fashion",
+    id: 4,
+    category: "Home & Lifestyle",
     subCategory: false,
   },
   {
-    id: 1,
-    category: "Woman’s Fashion",
+    id: 5,
+    category: "Medicine",
     subCategory: false,
   },
   {
-    id: 1,
-    category: "Woman’s Fashion",
+    id: 6,
+    category: "Sports & Outdoor",
+    subCategory: false,
+  },
+  {
+    id: 7,
+    category: "Baby’s & Toys",
+    subCategory: false,
+  },
+  {
+    id: 8,
+    category: "Groceries & Pets",
+    subCategory: false,
+  },
+  {
+    id: 9,
+    category: "Health & Beauty",
     subCategory: false,
   },
 ];
