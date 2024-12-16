@@ -12,8 +12,8 @@ import Homepage from "./Pages/HomePage/Homepage";
 //     <Route>
 //       <Route path="/" element={"this is main Route"} />
 //       <Route path="/home" element={"this is home"} />
-//     </Route>
-//   )
+//     </Route>,
+//   ),
 // );
 
 const router = createBrowserRouter([
