@@ -118,7 +118,7 @@ const Navbar = () => {
                   <FiUser />
                 </span>
                 {account && (
-                  <div className="bg-whitesmoke_F5F5F5/30 absolute right-1 top-10 h-[550%] w-[650%] rounded-lg bg-black/20 py-3 text-whitesmoke_F5F5F5 shadow-lg backdrop-blur-[150px]">
+                  <div className="bg-whitesmoke_F5F5F5/30 absolute right-1 top-10 z-20 h-[550%] w-[650%] rounded-lg bg-black/20 py-3 text-whitesmoke_F5F5F5 shadow-lg backdrop-blur-[150px]">
                     <div className="flex-col gap-y-4">
                       <div className="flex items-center pl-4 transition-all hover:bg-whiteColor hover:py-1 hover:text-black_363738">
                         <span className="pr-4 text-[25px]">

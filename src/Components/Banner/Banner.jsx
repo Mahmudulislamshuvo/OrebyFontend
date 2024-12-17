@@ -1,7 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import { category } from "../../../Data/Data";
+import BannerImg from "../../assets/Banner/BannerImg.jpg";
+import "slick-carousel/slick/slick.css";
+import Slider from "react-slick";
 
 const Banner = () => {
+  const [CurrentSlide, setCurrentSlide] = useState(0);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+
+    appendDots: (dots) => (
+      <div
+        style={{
+          position: "absolute",
+          bottom: "0",
+          left: "37%",
+          borderRadius: "50%",
+          padding: "10px",
+          transform: "translateY(-50%)",
+        }}
+      >
+        <ul style={{ margin: "0px", display: "flex" }}> {dots} </ul>
+      </div>
+    ),
+
+    customPaging: (i) =>
+      i == CurrentSlide ? (
+        <div
+          style={{
+            width: "20px",
+            height: "20px",
+            borderRadius: "50%",
+            background: "#DB4444",
+            border: "3px solid #ffff",
+            marginRight: "12px",
+            cursor: "pointer",
+          }}
+        ></div>
+      ) : (
+        <div
+          style={{
+            width: "20px",
+            height: "20px",
+            borderRadius: "50%",
+            background: "#FFFFFF",
+            marginRight: "12px",
+            opacity: 0.5,
+            cursor: "pointer",
+          }}
+        ></div>
+      ),
+    afterChange: function (currentSlide) {
+      setCurrentSlide(currentSlide);
+    },
+  };
+
   return (
     <div>
       <div className="container">
@@ -13,7 +72,19 @@ const Banner = () => {
               </div>
             ))}
           </div>
-          <div className="w-[75%] bg-red-500">b</div>
+          <div className="w-[75%]">
+            <Slider {...settings}>
+              {[...new Array(10)].map(() => (
+                <div className="h-[352px] w-[892px] pl-11 pt-10">
+                  <img
+                    src={BannerImg}
+                    alt={BannerImg}
+                    className="h-[352px] w-full border-none"
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
         </div>
       </div>
     </div>
