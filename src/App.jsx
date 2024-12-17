@@ -11,7 +11,7 @@ import Homepage from "./Pages/HomePage/Homepage";
 //   createRoutesFromElements(
 //     <Route>
 //       <Route path="/" element={"this is main Route"} />
-//       <Route path="/home" element={"this is home"} />
+//       <Route path="/home" element= <Homepage /> />
 //     </Route>,
 //   ),
 // );

@@ -75,7 +75,7 @@ const Banner = () => {
           <div className="w-[75%]">
             <Slider {...settings}>
               {[...new Array(10)].map(() => (
-                <div className="h-[352px] w-[892px] pl-11 pt-10">
+                <div className="box-border h-[352px] w-[892px] pl-11 pt-10">
                   <img
                     src={BannerImg}
                     alt={BannerImg}
