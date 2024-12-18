@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { category } from "../../../Data/Data";
-import BannerImg from "../../assets/Banner/BannerImg.jpg";
+import { category } from "../../../../Data/Data.js";
+import BannerImg from "../../../assets/Banner/BannerImg.jpg";
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 
