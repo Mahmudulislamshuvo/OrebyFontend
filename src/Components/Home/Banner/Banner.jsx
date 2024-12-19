@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { category } from "../../../../Data/Data.js";
+
 import BannerImg from "../../../assets/Banner/BannerImg.jpg";
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
+import BannerCetegories from "../../CommonComponents/BannerCetegories";
 
 const Banner = () => {
   const [CurrentSlide, setCurrentSlide] = useState(0);
@@ -68,12 +69,8 @@ const Banner = () => {
     <div>
       <div className="container">
         <div className="flex">
-          <div className="w-[25%] border-r-[1px] border-solid border-text2_black_full pt-10 transition-all">
-            {category?.map((items) => (
-              <div className="pb-4 font-poppins text-base leading-6 text-text2_black_full transition-all hover:bg-red_DB4444 hover:bg-opacity-20 hover:pl-3 hover:pt-4 hover:text-whiteColor">
-                {items.category}
-              </div>
-            ))}
+          <div className="w-[25%]">
+            <BannerCetegories />
           </div>
           <div className="relative w-[75%]">
             <Slider {...settings}>
