@@ -19,14 +19,17 @@ const Banner = () => {
       <div
         style={{
           position: "absolute",
-          bottom: "0",
-          left: "37%",
-          borderRadius: "50%",
+          bottom: "5px",
+          left: "50%",
+          transform: "translateX(-50%)",
           padding: "10px",
-          transform: "translateY(-50%)",
         }}
       >
-        <ul style={{ margin: "0px", display: "flex" }}> {dots} </ul>
+        <ul
+          style={{ margin: "0px", display: "flex", justifyContent: "center" }}
+        >
+          {dots}
+        </ul>
       </div>
     ),
 
@@ -34,23 +37,23 @@ const Banner = () => {
       i == CurrentSlide ? (
         <div
           style={{
-            width: "20px",
-            height: "20px",
+            width: "16px",
+            height: "16px",
             borderRadius: "50%",
             background: "#DB4444",
             border: "3px solid #ffff",
-            marginRight: "12px",
+            margin: "0 5px",
             cursor: "pointer",
           }}
         ></div>
       ) : (
         <div
           style={{
-            width: "20px",
-            height: "20px",
+            width: "16px",
+            height: "16px",
             borderRadius: "50%",
             background: "#FFFFFF",
-            marginRight: "12px",
+            margin: "0 5px",
             opacity: 0.5,
             cursor: "pointer",
           }}
@@ -72,7 +75,7 @@ const Banner = () => {
               </div>
             ))}
           </div>
-          <div className="w-[75%]">
+          <div className="relative w-[75%]">
             <Slider {...settings}>
               {[...new Array(10)].map(() => (
                 <div className="h-[352px] w-[892px] pl-11 pt-10 outline-none focus:outline-none">

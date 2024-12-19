@@ -24,6 +24,7 @@ export default {
         green_00FF66: "var(--green_00FF66)",
         SoftRed_E07575: "var(--SoftRed_E07575)",
         SoftBlue_A0BCE0: "var(--SoftBlue_A0BCE0)",
+        YellowStart_FFAD33: "var(--yello_Star)",
       },
     },
     fontFamily: {

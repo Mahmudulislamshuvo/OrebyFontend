@@ -14,6 +14,7 @@
   --green_00FF66: #00ff66;
   --SoftRed_E07575: #e07575;
   --SoftBlue_A0BCE0: #a0bce0;
+  --yello_Star: #ffad33;
 }
 
 @layer base {
@@ -75,17 +76,8 @@
     text-align: center;
     color: var(--whiteColor);
   }
-  /* .userRedCircle::after {
-    position: absolute;
-    top: -10px;
-    right: -8px;
-    content: "";
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background-color: var(--red_DB4444);
-    line-height: 150%;
-    text-align: center;
-    color: var(--whiteColor);
-  } */
+  .slick-dots {
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
