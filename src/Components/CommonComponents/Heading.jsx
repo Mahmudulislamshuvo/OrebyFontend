@@ -7,12 +7,15 @@ const Heading = ({
   description = "Flash Sales",
   timeofOffer = 0,
   timeStamp = false,
+  SliderNext,
+  SliderPrev,
+  Isarrow = false,
 }) => {
   return (
     <div className="pb-10 pt-[140px]">
       <div className="container">
         <div className="flex">
-          <div className="flex items-center justify-start">
+          <div className="flex w-full items-center justify-start">
             <div>
               <div className="flex items-center gap-x-4 text-center">
                 <span className="block h-10 w-5 rounded bg-red_DB4444"></span>
@@ -30,14 +33,22 @@ const Heading = ({
               {timeStamp && <Timer timeofOffer={timeofOffer} />}
             </div>
           </div>
-          {/* <div className="flex w-full items-end justify-end gap-x-5 text-end text-[30px]">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-whitesmoke_F5F5F5 p-3 text-center">
-              <IoMdArrowBack />
-            </span>
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-whitesmoke_F5F5F5 p-3 text-center">
-              <IoMdArrowForward />
-            </span>
-          </div> */}
+          {Isarrow && (
+            <div className="flex w-full items-end justify-end gap-x-5 text-end text-[30px]">
+              <span
+                onClick={SliderPrev}
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-whitesmoke_F5F5F5 p-3 text-center transition-all hover:bg-red_DB4444 hover:text-whiteColor"
+              >
+                <IoMdArrowBack />
+              </span>
+              <span
+                onClick={SliderNext}
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-whitesmoke_F5F5F5 p-3 text-center transition-all hover:bg-red_DB4444 hover:text-whiteColor"
+              >
+                <IoMdArrowForward />
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>
