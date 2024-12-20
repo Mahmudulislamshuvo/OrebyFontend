@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const Timer = () => {
-  const [time, settime] = useState(3 * 24 * 60 * 60 * 1000); // Initial countdown time
+const Timer = ({ timeofOffer = 0 }) => {
+  const [time, settime] = useState(timeofOffer * 24 * 60 * 60 * 1000 || 0); // Initial countdown time
 
   useEffect(() => {
     // Create the worker

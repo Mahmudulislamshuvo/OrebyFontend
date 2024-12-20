@@ -3,13 +3,19 @@ import cardImg from "../../assets/FlashSale/p1.png";
 import { IoHeartOutline } from "react-icons/io5";
 import { FaRegEye, FaStar } from "react-icons/fa";
 
-const ProductCart = () => {
+const ProductCart = ({
+  discount = 0,
+  ProductName = "XYZ",
+  price = 0,
+  BeforePrice = 0,
+  reviews = 0,
+}) => {
   return (
     <div>
       <div className="container">
         <div className="group relative h-[250px] w-[270px] overflow-hidden rounded bg-whitesmoke_F5F5F5">
           <span className="ml-3 mt-3 inline-block rounded bg-red_DB4444 px-3 py-1 text-xs font-normal text-whiteColor">
-            -35%
+            {discount}
           </span>
           <div className="h-[180] w-[190] px-10 pt-3">
             <img src={cardImg} alt={cardImg} className="w-full object-cover" />
@@ -31,19 +37,19 @@ const ProductCart = () => {
         <div>
           <div className="p-4">
             <h3 className="font-poppins text-base font-medium text-text2_black_full">
-              AK-900 Wired Keyboard
+              {ProductName}
             </h3>
             <div className="mt-2 flex items-center gap-2">
               <span className="font-poppins text-base font-medium text-red_DB4444">
-                $960
+                {price}
               </span>
               <span className="font-base font-poppins text-text2_black_full line-through opacity-50">
-                $1160
+                {BeforePrice}
               </span>
             </div>
             <div className="mt-2 flex items-center gap-1 text-center">
               {[...new Array(5)].map((_, index) => (
-                <span className="text-YellowStart_FFAD33 flex">
+                <span className="flex text-YellowStart_FFAD33">
                   <FaStar />
                 </span>
               ))}
@@ -51,7 +57,7 @@ const ProductCart = () => {
                 <FaStar />
               </span> */}
               <span className="block font-poppins text-sm font-semibold opacity-50">
-                {`(${[...new Array(5)].length})`}
+                {reviews ? reviews : `(${[...new Array(5)].length})`}
               </span>
             </div>
           </div>

@@ -1,43 +1,23 @@
-import React, { Component } from "react";
-import Heading from "../../CommonComponents/Heading";
+import React from "react";
+import ProductCommonLayout from "../../CommonComponents/ProductCommonLayout";
 import ProductCart from "../../CommonComponents/ProductCart";
-import Slider from "react-slick";
 
 const FlashSale = () => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    pauseOnHover: true,
-  };
-
   return (
-    <div className="container">
-      <div className="border-b-black_363738/80 border-b-2 pb-[60px]">
-        <div>
-          <Heading tittle={"Today’s"} description={"Flash Sales"} />
-        </div>
-        <Slider {...settings}>
-          {[...new Array(8)].map((_, index) => (
-            <div key={index}>
-              <ProductCart />
-            </div>
-          ))}
-        </Slider>
-        {/* <div className="flex justify-between">
-        {[...new Array(4)].map((_, index) => (
-          <ProductCart />
-        ))}
-      </div> */}
-        <div className="mb-15 mt-[60px] flex items-center justify-center text-center">
-          <button className="rounded bg-red_DB4444 px-12 py-4 font-poppins text-base text-whiteColor">
-            View All Products
-          </button>
-        </div>
-      </div>
+    <div>
+      <ProductCommonLayout
+        // ProductCart={ProductCart}
+        timeofOffer={2}
+        timeStamp={true}
+        tittle={"Today’s"}
+        description={"Flash Sales"}
+        Isarrow={true}
+        discount={"35%"}
+        ProductName={"AK-900 Wired Keyboard"}
+        price={"$960"}
+        BeforePrice={"$1160"}
+        reviews={10}
+      />
     </div>
   );
 };
