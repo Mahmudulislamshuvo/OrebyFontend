@@ -1,6 +1,21 @@
 import React from "react";
 import CategoryCommon from "../../CommonComponents/CategoryCommon";
 import ProductCommonLayout from "../../CommonComponents/ProductCommonLayout";
+import { MdOutlinePhoneIphone } from "react-icons/md";
+import { FaComputer } from "react-icons/fa6";
+import { BsSmartwatch } from "react-icons/bs";
+import { CiCamera } from "react-icons/ci";
+import { GiHeadphones } from "react-icons/gi";
+import { TbDeviceGamepad } from "react-icons/tb";
+
+const categoryBrows = [
+  { id: 1, name: "Phone", img: <MdOutlinePhoneIphone /> },
+  { id: 2, name: "Computer", img: <FaComputer /> },
+  { id: 3, name: "SmartWatch", img: <BsSmartwatch /> },
+  { id: 4, name: "Camera", img: <CiCamera /> },
+  { id: 5, name: "HeadPhone", img: <GiHeadphones /> },
+  { id: 6, name: "Gaming", img: <TbDeviceGamepad /> },
+];
 
 const Category = () => {
   return (
@@ -20,6 +35,7 @@ const Category = () => {
             BeforePrice={"$1160"}
             reviews={10}
             SlidshowNumber={6}
+            ComponentData={categoryBrows}
           />
         </div>
       </div>

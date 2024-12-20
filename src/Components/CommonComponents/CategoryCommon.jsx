@@ -1,8 +1,18 @@
 import React from "react";
-import ProductCartSkeleton from "../../helpers/ProductsSkeliton";
 
-const CategoryCommon = () => {
-  return <div className="h-[145px] w-[170px] bg-green-400"></div>;
+const CategoryCommon = ({ ComponentData }) => {
+  const { id, name, img } = ComponentData[0];
+
+  return (
+    <div className="h-[145px] w-[170px] rounded border-4 border-whitesmoke_F5F5F5">
+      <div className="flex h-full flex-col items-center justify-center text-center">
+        <span className="inline-block text-center text-[60px]">{img}</span>
+        <span className="inline-block pt-4 font-poppins text-base text-text2_black_full">
+          {name}
+        </span>
+      </div>
+    </div>
+  );
 };
 
 export default CategoryCommon;

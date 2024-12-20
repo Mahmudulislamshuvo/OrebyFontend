@@ -16,6 +16,7 @@ const ProductCommonLayout = ({
   reviews,
   timeStamp,
   SlidshowNumber = 4,
+  ComponentData = {},
 }) => {
   const settings = {
     dots: false,
@@ -57,6 +58,7 @@ const ProductCommonLayout = ({
                 price={price}
                 BeforePrice={BeforePrice}
                 reviews={reviews}
+                ComponentData={ComponentData ? ComponentData : {}}
               />
             </div>
           ))}
