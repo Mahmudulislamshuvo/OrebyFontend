@@ -19,6 +19,7 @@ const FlashSale = () => {
           BeforePrice={"$1160"}
           reviews={10}
           SlidshowNumber={4}
+          ComponentData={[...new Array(15)]}
         />
         <div className="mb-15 mt-[60px] flex items-center justify-center text-center">
           <button className="rounded bg-red_DB4444 px-12 py-4 font-poppins text-base text-whiteColor">

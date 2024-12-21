@@ -16,7 +16,7 @@ const ProductCommonLayout = ({
   reviews,
   timeStamp,
   SlidshowNumber = 4,
-  ComponentData = {},
+  ComponentData = [],
 }) => {
   const settings = {
     dots: false,
@@ -50,15 +50,15 @@ const ProductCommonLayout = ({
           SliderPrev={prev}
         />
         <Slider ref={sliderRef} {...settings}>
-          {[...new Array(8)].map((_, index) => (
-            <div key={index}>
+          {ComponentData?.map((item, index) => (
+            <div key={index} className={SlidshowNumber}>
               <ProductCart
                 discount={discount}
                 ProductName={ProductName}
                 price={price}
                 BeforePrice={BeforePrice}
                 reviews={reviews}
-                ComponentData={ComponentData ? ComponentData : {}}
+                ItemData={item ? item : {}}
               />
             </div>
           ))}

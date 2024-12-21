@@ -15,6 +15,12 @@ const categoryBrows = [
   { id: 4, name: "Camera", img: <CiCamera /> },
   { id: 5, name: "HeadPhone", img: <GiHeadphones /> },
   { id: 6, name: "Gaming", img: <TbDeviceGamepad /> },
+  { id: 7, name: "Phone", img: <MdOutlinePhoneIphone /> },
+  { id: 8, name: "Computer", img: <FaComputer /> },
+  { id: 9, name: "SmartWatch", img: <BsSmartwatch /> },
+  { id: 10, name: "Camera", img: <CiCamera /> },
+  { id: 11, name: "HeadPhone", img: <GiHeadphones /> },
+  { id: 12, name: "Gaming", img: <TbDeviceGamepad /> },
 ];
 
 const Category = () => {
