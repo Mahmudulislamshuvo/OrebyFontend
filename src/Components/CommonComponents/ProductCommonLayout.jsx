@@ -17,6 +17,7 @@ const ProductCommonLayout = ({
   timeStamp,
   SlidshowNumber = 4,
   ComponentData = [],
+  isLoading = false,
 }) => {
   const settings = {
     dots: false,
@@ -50,18 +51,34 @@ const ProductCommonLayout = ({
           SliderPrev={prev}
         />
         <Slider ref={sliderRef} {...settings}>
-          {ComponentData?.map((item, index) => (
+          {isLoading
+            ? [...new Array(6)].map((_, index) => (
+                <div>
+                  <ProductCartSkeleton />
+                </div>
+              ))
+            : ComponentData.map((item, index) => (
+                <div>
+                  <ProductCart ItemData={item} />
+                </div>
+              ))}
+
+          {/* {ComponentData?.map((item, index) => (
             <div key={index} className={SlidshowNumber}>
-              <ProductCart
-                discount={discount}
-                ProductName={ProductName}
-                price={price}
-                BeforePrice={BeforePrice}
-                reviews={reviews}
-                ItemData={item ? item : {}}
-              />
+              {isLoading ? (
+                <ProductCartSkeleton />
+              ) : (
+                <ProductCart
+                  discount={discount}
+                  ProductName={ProductName}
+                  price={price}
+                  BeforePrice={BeforePrice}
+                  reviews={reviews}
+                  ItemData={item ? item : {}}
+                />
+              )}
             </div>
-          ))}
+          ))} */}
         </Slider>
       </div>
     </div>
