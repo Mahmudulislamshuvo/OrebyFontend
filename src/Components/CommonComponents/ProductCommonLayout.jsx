@@ -32,10 +32,10 @@ const ProductCommonLayout = ({
   const sliderRef = useRef(null);
 
   const next = () => {
-    sliderRef.current.slickNext();
+    sliderRef.current.slickPrev();
   };
   const prev = () => {
-    sliderRef.current.slickPrev();
+    sliderRef.current.slickNext();
   };
 
   return (

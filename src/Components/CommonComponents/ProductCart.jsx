@@ -3,6 +3,7 @@ import cardImg from "../../assets/FlashSale/p1.png";
 import { IoHeartOutline } from "react-icons/io5";
 import { FaRegEye, FaStar } from "react-icons/fa";
 import { calculateBeforePrice } from "../../helpers/MakeDiscount";
+import Star from "./Star";
 
 const ProductCart = ({
   discount = 0,
@@ -18,6 +19,8 @@ const ProductCart = ({
   // const beforePrice = calculateBeforePrice(runningPrice, discountPercentage);
   // In jsx
   // {`Before Price: $${beforePrice.toFixed(2)}`}
+
+  console.log(ItemData);
 
   return (
     <div>
@@ -49,7 +52,7 @@ const ProductCart = ({
         </div>
         <div>
           <div className="p-4">
-            <h3 className="font-poppins text-base font-medium text-text2_black_full">
+            <h3 className="truncate font-poppins text-base font-medium text-text2_black_full">
               {ItemData?.title ? ItemData.title : "ProductName"}
             </h3>
             <div className="mt-2 flex items-center gap-2">
@@ -57,23 +60,23 @@ const ProductCart = ({
                 {ItemData?.price}
               </span>
               <span className="font-base font-poppins text-text2_black_full line-through opacity-50">
-                {`${calculateBeforePrice(
-                  ItemData.price,
-                  ItemData.discountPercentage,
-                ).toFixed(2)}`}
+                {ItemData.price > 0
+                  ? `${calculateBeforePrice(
+                      ItemData.price,
+                      ItemData.discountPercentage,
+                    ).toFixed(2)}`
+                  : null}
               </span>
             </div>
             <div className="mt-2 flex items-center gap-1 text-center">
-              {[...new Array(5)].map((_, index) => (
+              <Star rating={ItemData.rating} />
+              {/* {[...new Array(5)].map((_, index) => (
                 <span className="flex text-YellowStart_FFAD33">
                   <FaStar />
                 </span>
-              ))}
-              {/* <span className="text-text2_black_full opacity-25">
-                <FaStar />
-              </span> */}
+              ))} */}
               <span className="block font-poppins text-sm font-semibold opacity-50">
-                {ItemData?.rating ? ItemData.rating : `00`}
+                {`(${ItemData.reviews ? ItemData.reviews.length : `00`})`}
               </span>
             </div>
           </div>
