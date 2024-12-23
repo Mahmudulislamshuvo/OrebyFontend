@@ -5,7 +5,6 @@ import { useGetAllProductQuery } from "../../../Features/Api/PtoductApi";
 
 const FlashSale = () => {
   const { data, error, isLoading } = useGetAllProductQuery();
-  console.log(data, error, isLoading);
 
   return (
     <div className="container">

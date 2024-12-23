@@ -2,23 +2,36 @@ import React from "react";
 import cardImg from "../../assets/FlashSale/p1.png";
 import { IoHeartOutline } from "react-icons/io5";
 import { FaRegEye, FaStar } from "react-icons/fa";
+import { calculateBeforePrice } from "../../helpers/MakeDiscount";
 
 const ProductCart = ({
   discount = 0,
   ProductName = "XYZ",
-  price = 0,
+  price = 12,
   BeforePrice = 0,
   reviews = 0,
+  ItemData,
 }) => {
+  // Before price calculate another way to use
+  // const runningPrice = ItemData.price;
+  // const discountPercentage = ItemData.discountPercentage;
+  // const beforePrice = calculateBeforePrice(runningPrice, discountPercentage);
+  // In jsx
+  // {`Before Price: $${beforePrice.toFixed(2)}`}
+
   return (
     <div>
       <div className="container">
         <div className="group relative h-[250px] w-[270px] overflow-hidden rounded bg-whitesmoke_F5F5F5">
           <span className="ml-3 mt-3 inline-block rounded bg-red_DB4444 px-3 py-1 text-xs font-normal text-whiteColor">
-            {discount}
+            {`-${ItemData.discountPercentage}%`}
           </span>
           <div className="h-[180] w-[190] px-10 pt-3">
-            <img src={cardImg} alt={cardImg} className="w-full object-cover" />
+            <img
+              src={ItemData?.images[0]}
+              alt={ItemData?.images[0]}
+              className="w-full object-cover"
+            />
           </div>
           <div className="absolute right-2 top-3">
             <span className="flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-full bg-whiteColor text-center text-[20px] text-text2_black_full">
@@ -37,14 +50,17 @@ const ProductCart = ({
         <div>
           <div className="p-4">
             <h3 className="font-poppins text-base font-medium text-text2_black_full">
-              {ProductName}
+              {ItemData?.title ? ItemData.title : "ProductName"}
             </h3>
             <div className="mt-2 flex items-center gap-2">
               <span className="font-poppins text-base font-medium text-red_DB4444">
-                {price}
+                {ItemData?.price}
               </span>
               <span className="font-base font-poppins text-text2_black_full line-through opacity-50">
-                {BeforePrice}
+                {`${calculateBeforePrice(
+                  ItemData.price,
+                  ItemData.discountPercentage,
+                ).toFixed(2)}`}
               </span>
             </div>
             <div className="mt-2 flex items-center gap-1 text-center">
@@ -57,7 +73,7 @@ const ProductCart = ({
                 <FaStar />
               </span> */}
               <span className="block font-poppins text-sm font-semibold opacity-50">
-                {reviews ? reviews : `(${[...new Array(5)].length})`}
+                {ItemData?.rating ? ItemData.rating : `00`}
               </span>
             </div>
           </div>
