@@ -9,15 +9,11 @@ const ProductCommonLayout = ({
   description,
   Isarrow,
   timeofOffer,
-  discount,
-  ProductName,
-  price,
-  BeforePrice,
-  reviews,
   timeStamp,
   SlidshowNumber = 4,
   ComponentData = [],
   isLoading = false,
+  IsButton,
 }) => {
   const settings = {
     dots: false,
@@ -49,6 +45,7 @@ const ProductCommonLayout = ({
           timeStamp={timeStamp}
           SliderNext={next}
           SliderPrev={prev}
+          IsButton={IsButton}
         />
         <Slider ref={sliderRef} {...settings}>
           {isLoading
@@ -62,23 +59,6 @@ const ProductCommonLayout = ({
                   <ProductCart ItemData={item} />
                 </div>
               ))}
-
-          {/* {ComponentData?.map((item, index) => (
-            <div key={index} className={SlidshowNumber}>
-              {isLoading ? (
-                <ProductCartSkeleton />
-              ) : (
-                <ProductCart
-                  discount={discount}
-                  ProductName={ProductName}
-                  price={price}
-                  BeforePrice={BeforePrice}
-                  reviews={reviews}
-                  ItemData={item ? item : {}}
-                />
-              )}
-            </div>
-          ))} */}
         </Slider>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryCommon = ({ ItemData }) => {
+const CategoryCommon = ({ ItemData, isLoading }) => {
   return (
     <div className="h-[145px] w-[170px] rounded border-4 border-whitesmoke_F5F5F5">
       <div className="group flex h-full flex-col items-center justify-center text-center transition-all hover:rounded hover:border-0 hover:bg-red_DB4444 hover:text-whiteColor">

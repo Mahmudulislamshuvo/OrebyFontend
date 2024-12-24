@@ -10,6 +10,7 @@ const Heading = ({
   SliderNext,
   SliderPrev,
   Isarrow = false,
+  IsButton = false,
 }) => {
   return (
     <div className="pb-10 pt-[140px]">
@@ -47,6 +48,13 @@ const Heading = ({
               >
                 <IoMdArrowForward />
               </span>
+            </div>
+          )}
+          {IsButton && (
+            <div className="flex w-full items-end justify-end gap-x-5 text-end">
+              <button className="rounded bg-red_DB4444 px-12 py-4 text-whiteColor transition-all hover:bg-red-300">
+                View All
+              </button>
             </div>
           )}
         </div>

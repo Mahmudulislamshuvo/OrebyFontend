@@ -80,4 +80,40 @@
     overflow: hidden;
     white-space: nowrap;
   }
+  .PosterBackground {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+  }
+
+  .PosterBackground::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    z-index: 1;
+    background-color: rgba(217, 217, 217, 0.418);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-box-shadow: 1px 0px 117px 173px rgba(0, 94, 209, 0.48);
+    -moz-box-shadow: 1px 0px 117px 173px rgba(0, 94, 209, 0.48);
+    box-shadow: 1px 0px 117px 173px rgba(0, 94, 209, 0.48);
+  }
+
+  .poster-image {
+    position: relative;
+    z-index: 2;
+    width: auto;
+    height: 480px;
+  }
 }

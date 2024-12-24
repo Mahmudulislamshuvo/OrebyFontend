@@ -27,7 +27,7 @@ const Category = () => {
   return (
     <>
       <div className="container">
-        <div>
+        <div className="border-b-black_363738/80 border-b-2 pb-[60px]">
           <ProductCommonLayout
             ProductCart={CategoryCommon}
             timeofOffer={2}
@@ -35,10 +35,6 @@ const Category = () => {
             tittle={"Categories"}
             description={"Browse By Category"}
             Isarrow={true}
-            discount={"35%"}
-            ProductName={"AK-900 Wired Keyboard"}
-            price={"$960"}
-            BeforePrice={"$1160"}
             reviews={10}
             SlidshowNumber={6}
             ComponentData={categoryBrows}

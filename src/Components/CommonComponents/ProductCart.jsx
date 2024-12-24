@@ -5,14 +5,7 @@ import { FaRegEye, FaStar } from "react-icons/fa";
 import { calculateBeforePrice } from "../../helpers/MakeDiscount";
 import Star from "./Star";
 
-const ProductCart = ({
-  discount = 0,
-  ProductName = "XYZ",
-  price = 12,
-  BeforePrice = 0,
-  reviews = 0,
-  ItemData,
-}) => {
+const ProductCart = ({ ItemData }) => {
   // Before price calculate another way to use
   // const runningPrice = ItemData.price;
   // const discountPercentage = ItemData.discountPercentage;
@@ -20,15 +13,16 @@ const ProductCart = ({
   // In jsx
   // {`Before Price: $${beforePrice.toFixed(2)}`}
 
-  console.log(ItemData);
-
   return (
     <div>
       <div className="container">
         <div className="group relative h-[250px] w-[270px] overflow-hidden rounded bg-whitesmoke_F5F5F5">
-          <span className="ml-3 mt-3 inline-block rounded bg-red_DB4444 px-3 py-1 text-xs font-normal text-whiteColor">
-            {`-${ItemData.discountPercentage}%`}
-          </span>
+          {ItemData.discountPercentage && (
+            <span className="ml-3 mt-3 inline-block rounded bg-red_DB4444 px-3 py-1 text-xs font-normal text-whiteColor">
+              {`-${ItemData.discountPercentage}%`}
+            </span>
+          )}
+
           <div className="h-[180] w-[190] px-10 pt-3">
             <img
               src={ItemData?.images[0]}
