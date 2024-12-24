@@ -7,6 +7,7 @@ import Category from "../../Components/Home/Category/Category";
 import BestSelling from "../../Components/Home/BestSelling/BestSelling";
 import ExperiencePoster from "../../Components/Home/ExperiencePoster/ExperiencePoster";
 import ExploreProducts from "../../Components/Home/ExploreProduct/ExploreProducts";
+import NewArrival from "../../Components/Home/NewArival/NewArrival";
 
 const Homepage = () => {
   return (
@@ -19,6 +20,7 @@ const Homepage = () => {
       <BestSelling />
       <ExperiencePoster />
       <ExploreProducts />
+      <NewArrival />
     </div>
   );
 };
