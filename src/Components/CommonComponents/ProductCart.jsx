@@ -1,7 +1,6 @@
 import React from "react";
-import cardImg from "../../assets/FlashSale/p1.png";
 import { IoHeartOutline } from "react-icons/io5";
-import { FaRegEye, FaStar } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
 import { calculateBeforePrice } from "../../helpers/MakeDiscount";
 import Star from "./Star";
 

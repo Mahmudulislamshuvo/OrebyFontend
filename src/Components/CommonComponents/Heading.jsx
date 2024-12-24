@@ -18,7 +18,7 @@ const Heading = ({
         <div className="flex">
           <div className="flex w-full items-center justify-start">
             <div>
-              <div className="flex items-center gap-x-4 text-center">
+              <div className="flex w-full items-center gap-x-4 text-center">
                 <span className="block h-10 w-5 rounded bg-red_DB4444"></span>
                 <h4 className="font-poppins text-base font-semibold text-red_DB4444">
                   {tittle ? tittle : "Today’s"}

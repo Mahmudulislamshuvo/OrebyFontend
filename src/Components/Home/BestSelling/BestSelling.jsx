@@ -16,6 +16,7 @@ const BestSelling = () => {
         ComponentData={data ? data.products : []}
         isLoading={isLoading}
         IsButton={true}
+        autoplay={true}
       />
     </div>
   );

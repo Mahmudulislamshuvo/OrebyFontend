@@ -14,15 +14,18 @@ const ProductCommonLayout = ({
   ComponentData = [],
   isLoading = false,
   IsButton,
+  autoplay = false,
+  row = 1,
 }) => {
   const settings = {
     dots: false,
     infinite: true,
     slidesToShow: SlidshowNumber ? SlidshowNumber : 4,
     slidesToScroll: SlidshowNumber - 1,
-    autoplay: true,
+    autoplay: autoplay,
     autoplaySpeed: 2000,
     pauseOnHover: true,
+    rows: row,
   };
 
   const sliderRef = useRef(null);
