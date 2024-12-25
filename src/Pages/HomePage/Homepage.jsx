@@ -9,6 +9,7 @@ import ExperiencePoster from "../../Components/Home/ExperiencePoster/ExperienceP
 import ExploreProducts from "../../Components/Home/ExploreProduct/ExploreProducts";
 import NewArrival from "../../Components/Home/NewArival/NewArrival";
 import ContactUs from "../../Components/Home/ContactUs/ContactUs";
+import Footer from "../../Components/RootLayout/Footer";
 
 const Homepage = () => {
   return (
@@ -23,6 +24,7 @@ const Homepage = () => {
       <ExploreProducts />
       <NewArrival />
       <ContactUs />
+      <Footer />
     </div>
   );
 };
