@@ -8,6 +8,7 @@ import BestSelling from "../../Components/Home/BestSelling/BestSelling";
 import ExperiencePoster from "../../Components/Home/ExperiencePoster/ExperiencePoster";
 import ExploreProducts from "../../Components/Home/ExploreProduct/ExploreProducts";
 import NewArrival from "../../Components/Home/NewArival/NewArrival";
+import ContactUs from "../../Components/Home/ContactUs/ContactUs";
 
 const Homepage = () => {
   return (
@@ -21,6 +22,7 @@ const Homepage = () => {
       <ExperiencePoster />
       <ExploreProducts />
       <NewArrival />
+      <ContactUs />
     </div>
   );
 };
