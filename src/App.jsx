@@ -15,6 +15,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<RootMainLayout />}>
         <Route index element={<Homepage />}></Route>
         <Route path="/about" element={<PracticeBreadCrumb />}></Route>
+        <Route path="/about/he" element={<PracticeBreadCrumb />}></Route>
       </Route>
     </Route>,
   ),

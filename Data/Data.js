@@ -2,12 +2,18 @@ export const category = [
   {
     id: 1,
     category: "Woman’s Fashion",
-    subCategory: true,
+    subCategory: [
+      { id: 1.1, name: "Dresses" },
+      { id: 1.2, name: "Tops" },
+    ],
   },
   {
     id: 2,
     category: "Men’s Fashion",
-    subCategory: true,
+    subCategory: [
+      { id: 2.1, name: "Shirts" },
+      { id: 2.2, name: "Trousers" },
+    ],
   },
   {
     id: 3,
