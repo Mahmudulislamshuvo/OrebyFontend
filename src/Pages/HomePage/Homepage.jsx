@@ -14,8 +14,6 @@ import Footer from "../../Components/RootLayout/Footer";
 const Homepage = () => {
   return (
     <div>
-      <Header />
-      <Navbar />
       <Banner />
       <FlashSale />
       <Category />
@@ -24,7 +22,6 @@ const Homepage = () => {
       <ExploreProducts />
       <NewArrival />
       <ContactUs />
-      <Footer />
     </div>
   );
 };

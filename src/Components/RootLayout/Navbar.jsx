@@ -43,18 +43,22 @@ const Navbar = () => {
     {
       id: 1,
       Item: "Home",
+      pathRoute: "/",
     },
     {
       id: 2,
       Item: "Contact",
+      pathRoute: "/contact",
     },
     {
       id: 3,
       Item: "About",
+      pathRoute: "/about",
     },
     {
       id: 4,
       Item: "SignUp",
+      pathRoute: "/singup",
     },
   ];
 
@@ -69,11 +73,11 @@ const Navbar = () => {
             <ul className="flex gap-x-12 font-poppins text-base">
               {NavMenu?.map((nav) => (
                 <li
-                  className="border-Snow_text1 transition-all hover:border-b-[4px]"
+                  className="border-b-[4px] border-transparent transition-all hover:border-[rgba(0,0,0,0.5)] hover:text-red_DB4444"
                   key={"Nav"}
                 >
                   <NavLink
-                    to="/"
+                    to={`${nav.pathRoute}`}
                     className={({ isActive, isPending }) =>
                       isPending ? "pending" : isActive ? "acive" : ""
                     }
