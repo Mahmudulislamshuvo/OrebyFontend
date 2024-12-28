@@ -6,12 +6,28 @@ const ProductRight = () => {
   const { data, error, isLoading } = useGetAllProductQuery();
   const [page, setpage] = useState(1);
   const [pageShowItem, setpageShowItem] = useState(9);
-  let allProducts = data?.limit / 9;
+  let allProducts = data?.products?.length / pageShowItem || 1;
+  console.log(allProducts);
 
   // pagination Functionality
   const HandlePageNumber = (index) => {
-    setpage(index);
+    if (index > 0 && index <= Math.ceil(allProducts)) {
+      setpage(index);
+    }
   };
+
+  // const HandleNextbtn = (nextPage) => {
+  //   if (nextPage <= Math.ceil(allProducts)) {
+  //     setpage(nextPage);
+  //   }
+  //   console.log(allProducts);
+  // };
+
+  // const HandlePreviousbtn = (previousPage) => {
+  //   if (previousPage > 0) {
+  //     setpage(previousPage);
+  //   }
+  // };
 
   return (
     <>
@@ -54,21 +70,22 @@ const ProductRight = () => {
             <ul className="inline-flex h-10 -space-x-px text-base">
               <li>
                 <span
+                  onClick={() => HandlePageNumber(page - 1)}
                   href="#"
                   className="ms-0 flex h-10 cursor-pointer items-center justify-center rounded-s-lg border border-e-0 border-gray-300 bg-text2_black_full px-4 leading-tight text-whiteColor hover:bg-gray-100 hover:text-red_DB4444 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   Previous
                 </span>
               </li>
-              {[...new Array(Math.ceil(allProducts) || 0)].map((_, index) => (
+              {[...new Array(Math.ceil(allProducts) || 9)].map((_, index) => (
                 <li>
                   <span
                     onClick={() => HandlePageNumber(index + 1)}
                     href="#"
                     className={
                       index + 1 === page
-                        ? "flex h-10 items-center justify-center border border-gray-300 bg-red_DB4444 px-4 leading-tight text-whiteColor hover:bg-red_DB4444 hover:text-whiteColor dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-whiteColor"
-                        : "flex h-10 items-center justify-center border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        ? "flex h-10 cursor-pointer items-center justify-center border border-gray-300 bg-red_DB4444 px-4 leading-tight text-whiteColor hover:bg-red_DB4444 hover:text-whiteColor dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-whiteColor"
+                        : "flex h-10 cursor-pointer items-center justify-center border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     }
                   >
                     {index + 1}
@@ -78,6 +95,7 @@ const ProductRight = () => {
 
               <li>
                 <span
+                  onClick={() => HandlePageNumber(page + 1)}
                   href="#"
                   className="flex h-10 cursor-pointer items-center justify-center rounded-e-lg border border-gray-300 bg-text2_black_full px-4 leading-tight text-whiteColor hover:bg-gray-100 hover:text-red_DB4444 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
