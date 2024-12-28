@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import BannerImg from "../../../assets/Banner/BannerImg.jpg";
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
@@ -69,7 +68,7 @@ const Banner = () => {
     <div>
       <div className="container">
         <div className="flex">
-          <div className="w-[25%]">
+          <div className="w-[25%] border-r-[1px] border-solid border-text2_black_full pt-10">
             <BannerCetegories />
           </div>
           <div className="relative w-[75%]">

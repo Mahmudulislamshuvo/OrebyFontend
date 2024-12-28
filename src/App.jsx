@@ -8,14 +8,14 @@ import {
 import Homepage from "./Pages/HomePage/Homepage";
 import RootMainLayout from "./Components/RootLayout/RootMainLayout";
 import PracticeBreadCrumb from "./Components/CommonComponents/PracticeBreadCrumb";
+import ProductPage from "./Pages/ProductsPage/ProductPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<RootMainLayout />}>
         <Route index element={<Homepage />}></Route>
-        <Route path="/about" element={<PracticeBreadCrumb />}></Route>
-        <Route path="/about/he" element={<PracticeBreadCrumb />}></Route>
+        <Route path="/about" element={<ProductPage />}></Route>
       </Route>
     </Route>,
   ),

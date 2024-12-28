@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { category } from "../../../Data/Data.js";
-import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 
-const BannerCategories = ({ IsLoading }) => {
+const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   // Handle dropDown
@@ -11,13 +9,13 @@ const BannerCategories = ({ IsLoading }) => {
   };
 
   return (
-    <div className="">
-      <div>
-        {category.map((items) => (
+    <div>
+      <div className="">
+        {CategoryData?.map((items) => (
           <div key={items.id} className="transition-all">
             <div className="group flex items-center justify-between transition-all hover:bg-red_DB4444 hover:bg-opacity-20 hover:pl-3 hover:pt-4">
-              <li className="pb-4 font-poppins text-base leading-6 text-text2_black_full group-hover:text-whiteColor">
-                {items.category}
+              <li className="cursor-pointer pb-4 font-poppins text-base leading-6 text-text2_black_full group-hover:text-whiteColor">
+                {items.name}
               </li>
               <span
                 className="cursor-pointer pb-4 pr-24 group-hover:text-whiteColor"
@@ -51,4 +49,4 @@ const BannerCategories = ({ IsLoading }) => {
   );
 };
 
-export default BannerCategories;
+export default AboutCategoryAwaiting;

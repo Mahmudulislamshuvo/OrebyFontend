@@ -7,7 +7,7 @@ export const BreadCrumb = () => {
   let BreadCrumbPath = "";
 
   return (
-    <div className="py-20">
+    <div className="py-10">
       <div className="container">
         <div className="flex items-center gap-x-2">
           <span className="text-white_FFFFFF font-popins inline-block rounded-sm bg-green-500 px-2 py-1">

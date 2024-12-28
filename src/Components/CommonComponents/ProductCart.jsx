@@ -4,7 +4,7 @@ import { FaRegEye } from "react-icons/fa";
 import { calculateBeforePrice } from "../../helpers/MakeDiscount";
 import Star from "./Star";
 
-const ProductCart = ({ ItemData }) => {
+const ProductCart = ({ ItemData, isLoading }) => {
   // Before price calculate another way to use
   // const runningPrice = ItemData.price;
   // const discountPercentage = ItemData.discountPercentage;
