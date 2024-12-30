@@ -8,10 +8,10 @@ const ProductDetails = () => {
   return (
     <div className="container">
       <div className="flex">
-        <div className="w-[70%]">
+        <div className="mr-4 w-[60%]">
           <ImageGallery image={data?.images} />
         </div>
-        <div className="w-[30%] bg-red-300"></div>
+        <div className="w-[40%] bg-red-300"></div>
       </div>
     </div>
   );
