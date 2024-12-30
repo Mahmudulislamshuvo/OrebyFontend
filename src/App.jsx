@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import Homepage from "./Pages/HomePage/Homepage";
 import RootMainLayout from "./Components/RootLayout/RootMainLayout";
-import PracticeBreadCrumb from "./Components/CommonComponents/PracticeBreadCrumb";
 import ProductPage from "./Pages/ProductsPage/ProductPage";
+import ProductDetailsPage from "./Pages/ProductDetailsPage/ProductDetailsPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +16,11 @@ const router = createBrowserRouter(
       <Route path="/" element={<RootMainLayout />}>
         <Route index element={<Homepage />}></Route>
         <Route path="/about" element={<ProductPage />}></Route>
+        <Route
+          path="/productdetails/:id"
+          element={<ProductDetailsPage />}
+        ></Route>
+        <Route path="/productdetails" element={<ProductPage />}></Route>
       </Route>
     </Route>,
   ),

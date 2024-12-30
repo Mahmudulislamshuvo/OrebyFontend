@@ -27,7 +27,7 @@ const ProductRight = () => {
   //   if (previousPage > 0) {
   //     setpage(previousPage);
   //   }
-  // };
+  // }
 
   return (
     <>

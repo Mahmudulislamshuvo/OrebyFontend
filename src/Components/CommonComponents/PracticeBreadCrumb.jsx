@@ -9,7 +9,7 @@ const PracticeBreadCrumb = () => {
   return (
     <div>
       <div className="container">
-        <div className="my-20 flex items-center">
+        <div className="my-10 flex items-center">
           <span className="inline-block rounded-sm bg-green-500 px-2 py-1 text-whiteColor">
             <Link to={"/"}>home</Link>
           </span>
