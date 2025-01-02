@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import ImageGallery from "../CommonComponents/ProductsDetails/ImageGallery";
 import { useGetsingleProductQuery } from "../../Features/Api/PtoductApi";
 import { FaStar } from "react-icons/fa6";
 import PlusMinus from "./PlusMinus";
 import { GoHeart } from "react-icons/go";
+import { TbRefresh, TbTruckDelivery } from "react-icons/tb";
 
 const ProductDetails = () => {
   const { data, error, isLoading } = useGetsingleProductQuery(parseInt(1));
+  const [activeSizeId, setActiveSizeId] = useState(null);
+
+  const sizes = [
+    {
+      id: 1,
+      size: "XS",
+    },
+    {
+      id: 2,
+      size: "S",
+    },
+    {
+      id: 3,
+      size: "M",
+    },
+    {
+      id: 4,
+      size: "L",
+    },
+    {
+      id: 5,
+      size: "XL",
+    },
+  ];
 
   return (
     <div className="container">
@@ -57,7 +82,7 @@ const ProductDetails = () => {
               {/* price and description */}
             </div>
             {/* colors, size, delivery and return design */}
-            <div className="mt-5 flex items-center text-center">
+            <div className="mb-4 mt-5 flex items-center text-center">
               <h3 className="pr-6">Colours</h3>
               <div className="flex items-center justify-center gap-x-2">
                 <div className="flex h-[21px] w-[21px] items-center justify-center rounded-full border-[4px] border-text2_black_full">
@@ -68,27 +93,66 @@ const ProductDetails = () => {
                 </div>
               </div>
             </div>
-            {/* Size */}
-            <div className="flex items-center">
-              <div>
+            {/* Size  design*/}
+            <div className="flex items-center text-center">
+              <div className="pr-6">
                 <h4 className="font-inter text-xl text-text2_black_full">
                   Size:
                 </h4>
               </div>
-              <div className="pb-[24px]">
-                <span className="rounded border-2 border-[rgba(0,0,0,0.3)] px-[10px] py-[6px] font-poppins text-sm font-medium text-text2_black_full transition-all hover:bg-red_DB4444 hover:text-whiteColor">
-                  XS
-                </span>
+              <div className="flex items-center gap-x-4">
+                {sizes?.map((size) => (
+                  <h5
+                    key={size.id}
+                    className={
+                      activeSizeId === size.id
+                        ? "rounded bg-red_DB4444 px-[10px] py-[6px] font-poppins text-sm font-medium text-whiteColor transition-all"
+                        : "rounded border-2 border-[rgba(0,0,0,0.3)] px-[10px] py-[6px] font-poppins text-sm font-medium text-text2_black_full transition-all hover:bg-red_DB4444 hover:text-whiteColor"
+                    }
+                    onClick={() => setActiveSizeId(size.id)}
+                  >
+                    {size.size}
+                  </h5>
+                ))}
               </div>
             </div>
             {/* buy now buton */}
-            <div className="flex items-center">
+            <div className="mt-6 flex items-center">
               <PlusMinus />
               <button className="ml-4 rounded-sm bg-red_DB4444 px-12 py-3 font-poppins text-base font-medium text-whiteColor">
                 Buy Now
               </button>
               <div className="ml-5 rounded border-2 border-[rgba(0,0,0,0.3)] p-[7px]">
                 <GoHeart className="h-8 w-8" />
+              </div>
+            </div>
+            {/* delivery Design */}
+            <div className="mr-[20%] mt-10 rounded-sm border-2 border-[rgba(0,0,0,0.49)]">
+              <div className="flex items-center border-2 border-b-[rgba(0,0,0,0.49)] pb-4 pl-4 pt-6">
+                <div>
+                  <TbTruckDelivery className="h-10 w-10" />
+                </div>
+                <div className="pl-4">
+                  <h3 className="font-poppins text-base font-medium text-text2_black_full">
+                    Free Delivery
+                  </h3>
+                  <p className="font-poppins text-xs font-medium text-text2_black_full">
+                    Enter your postal code for Delivery Availability
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center pb-4 pl-4 pt-6">
+                <div>
+                  <TbRefresh className="h-10 w-10" />
+                </div>
+                <div className="pl-4">
+                  <h3 className="font-poppins text-base font-medium text-text2_black_full">
+                    Free Delivery
+                  </h3>
+                  <p className="font-poppins text-xs font-medium text-text2_black_full">
+                    Enter your postal code for Delivery Availability
+                  </p>
+                </div>
               </div>
             </div>
           </div>
