@@ -2,6 +2,8 @@ import React from "react";
 import ImageGallery from "../CommonComponents/ProductsDetails/ImageGallery";
 import { useGetsingleProductQuery } from "../../Features/Api/PtoductApi";
 import { FaStar } from "react-icons/fa6";
+import PlusMinus from "./PlusMinus";
+import { GoHeart } from "react-icons/go";
 
 const ProductDetails = () => {
   const { data, error, isLoading } = useGetsingleProductQuery(parseInt(1));
@@ -42,6 +44,7 @@ const ProductDetails = () => {
               </span>
               {/* stars and instock end*/}
             </div>
+            {/* price and description */}
             <div className="border-b-[2px] border-[rgba(0,0,0,0.5)]">
               <h4 className="pb-6 font-inter text-2xl tracking-[3%] text-text2_black_full">
                 $192.00
@@ -51,8 +54,43 @@ const ProductDetails = () => {
                 channel adhesive for easy bubble free install & mess free
                 removal Pressure sensitive.
               </p>
+              {/* price and description */}
             </div>
-            <div>jkgug</div>
+            {/* colors, size, delivery and return design */}
+            <div className="mt-5 flex items-center text-center">
+              <h3 className="pr-6">Colours</h3>
+              <div className="flex items-center justify-center gap-x-2">
+                <div className="flex h-[21px] w-[21px] items-center justify-center rounded-full border-[4px] border-text2_black_full">
+                  <span className="inline-block h-[10px] w-[10px] rounded-full bg-red_DB4444"></span>
+                </div>
+                <div className="flex h-[21px] w-[21px] items-center justify-center rounded-full border-[4px] border-text2_black_full">
+                  <span className="inline-block h-[10px] w-[10px] rounded-full bg-[#A0BCE0]"></span>
+                </div>
+              </div>
+            </div>
+            {/* Size */}
+            <div className="flex items-center">
+              <div>
+                <h4 className="font-inter text-xl text-text2_black_full">
+                  Size:
+                </h4>
+              </div>
+              <div className="pb-[24px]">
+                <span className="rounded border-2 border-[rgba(0,0,0,0.3)] px-[10px] py-[6px] font-poppins text-sm font-medium text-text2_black_full transition-all hover:bg-red_DB4444 hover:text-whiteColor">
+                  XS
+                </span>
+              </div>
+            </div>
+            {/* buy now buton */}
+            <div className="flex items-center">
+              <PlusMinus />
+              <button className="ml-4 rounded-sm bg-red_DB4444 px-12 py-3 font-poppins text-base font-medium text-whiteColor">
+                Buy Now
+              </button>
+              <div className="ml-5 rounded border-2 border-[rgba(0,0,0,0.3)] p-[7px]">
+                <GoHeart className="h-8 w-8" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
