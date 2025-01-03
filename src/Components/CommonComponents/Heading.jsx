@@ -4,7 +4,7 @@ import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
 const Heading = ({
   tittle = "Today’s",
-  description = "Flash Sales",
+  description = true,
   timeofOffer = 0,
   timeStamp = false,
   SliderNext,
@@ -25,9 +25,11 @@ const Heading = ({
                 </h4>
               </div>
               <div>
-                <h3 className="pt-6 font-inter text-[36px] font-semibold leading-[48px] tracking-[4%]">
-                  {description ? description : "Flash Sales"}
-                </h3>
+                {description && (
+                  <h3 className="pt-6 font-inter text-[36px] font-semibold leading-[48px] tracking-[4%]">
+                    {description ? description : "Flash Sales"}
+                  </h3>
+                )}
               </div>
             </div>
             <div className="self-end pl-[87px]">

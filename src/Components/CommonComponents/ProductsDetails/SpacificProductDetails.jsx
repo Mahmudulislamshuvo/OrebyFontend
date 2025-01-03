@@ -8,8 +8,16 @@ import Star from "../Star";
 const SpacificProductDetails = ({ ProductDetailsData }) => {
   const [activeSizeId, setActiveSizeId] = useState(null);
 
-  const { title, rating, stock, reviews, price, description } =
-    ProductDetailsData;
+  const {
+    title,
+    rating,
+    stock,
+    reviews,
+    price,
+    description,
+    warrantyInformation,
+    category,
+  } = ProductDetailsData;
 
   const sizes = [
     {
@@ -133,10 +141,10 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
             </div>
             <div className="pl-4">
               <h3 className="font-poppins text-base font-medium text-text2_black_full">
-                Free Delivery
+                Return Delivery
               </h3>
               <p className="font-poppins text-xs font-medium text-text2_black_full">
-                Enter your postal code for Delivery Availability
+                {warrantyInformation}
               </p>
             </div>
           </div>
