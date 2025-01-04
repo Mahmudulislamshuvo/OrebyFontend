@@ -9,6 +9,7 @@ import Homepage from "./Pages/HomePage/Homepage";
 import RootMainLayout from "./Components/RootLayout/RootMainLayout";
 import ProductPage from "./Pages/ProductsPage/ProductPage";
 import ProductDetailsPage from "./Pages/ProductDetailsPage/ProductDetailsPage";
+import LoginPage from "./Pages/LoginPage/LoginPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
           element={<ProductDetailsPage />}
         ></Route>
         <Route path="/productdetails" element={<ProductPage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
       </Route>
     </Route>,
   ),

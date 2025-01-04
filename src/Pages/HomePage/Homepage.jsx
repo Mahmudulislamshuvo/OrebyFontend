@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "../../Components/RootLayout/Header";
-import Navbar from "../../Components/RootLayout/Navbar";
 import Banner from "../../Components/Home/Banner/Banner";
 import FlashSale from "../../Components/Home/FlashSale/FlashSale";
 import Category from "../../Components/Home/Category/Category";
@@ -9,7 +7,6 @@ import ExperiencePoster from "../../Components/Home/ExperiencePoster/ExperienceP
 import ExploreProducts from "../../Components/Home/ExploreProduct/ExploreProducts";
 import NewArrival from "../../Components/Home/NewArival/NewArrival";
 import ContactUs from "../../Components/Home/ContactUs/ContactUs";
-import Footer from "../../Components/RootLayout/Footer";
 
 const Homepage = () => {
   return (
