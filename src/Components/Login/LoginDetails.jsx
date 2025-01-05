@@ -1,6 +1,21 @@
 import React from "react";
+import { useFormik } from "formik";
+import { LoginYupSchema } from "../../Validations/Schema/LoginYupSchema";
 
 const LoginDetails = () => {
+  const InitialState = {
+    emailorPhone: "",
+    password: "",
+  };
+
+  const formik = useFormik({
+    initialValues: InitialState,
+    validationSchema: LoginYupSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <div>
       <div className="">
@@ -10,7 +25,10 @@ const LoginDetails = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Log in to Exclusive
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form
+                className="space-y-4 md:space-y-6"
+                onSubmit={formik.handleSubmit}
+              >
                 <div>
                   <label
                     htmlFor="email"
@@ -20,12 +38,19 @@ const LoginDetails = () => {
                   </label>
                   <input
                     type="email"
-                    name="email"
-                    id="email"
+                    name="emailorPhone"
+                    id="emailorPhone"
                     className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="name@company.com"
                     required
+                    onChange={formik.handleChange}
+                    value={formik.values.emailorPhone}
                   />
+                  {formik.touched.emailorPhone && formik.errors.emailorPhone ? (
+                    <span className="text-red-500">
+                      {formik.errors.emailorPhone}
+                    </span>
+                  ) : null}
                 </div>
                 <div>
                   <label
@@ -41,7 +66,14 @@ const LoginDetails = () => {
                     placeholder="••••••••"
                     className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     required
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
                   />
+                  {formik.touched.password && formik.errors.password ? (
+                    <span className="text-red-500">
+                      {formik.errors.password}
+                    </span>
+                  ) : null}
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
@@ -71,7 +103,7 @@ const LoginDetails = () => {
                 </div>
                 <button
                   type="submit"
-                  className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4"
+                  className="hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg bg-red_DB4444 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4"
                 >
                   Sign in
                 </button>
