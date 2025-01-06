@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { LoginYupSchema } from "../../Validations/Schema/LoginYupSchema";
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
 
 const LoginDetails = () => {
+  const [eye, seteye] = useState(false);
+
   const InitialState = {
     emailorPhone: "",
     password: "",
@@ -46,13 +50,14 @@ const LoginDetails = () => {
                     onChange={formik.handleChange}
                     value={formik.values.emailorPhone}
                   />
+
                   {formik.touched.emailorPhone && formik.errors.emailorPhone ? (
                     <span className="text-red-500">
                       {formik.errors.emailorPhone}
                     </span>
                   ) : null}
                 </div>
-                <div>
+                <div className="relative">
                   <label
                     htmlFor="password"
                     className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -60,7 +65,7 @@ const LoginDetails = () => {
                     Password
                   </label>
                   <input
-                    type="password"
+                    type={eye ? "text" : "password"}
                     name="password"
                     id="password"
                     placeholder="••••••••"
@@ -69,6 +74,22 @@ const LoginDetails = () => {
                     onChange={formik.handleChange}
                     value={formik.values.password}
                   />
+                  {eye ? (
+                    <span
+                      className="absolute right-3 top-[68%] -translate-y-[50%] cursor-pointer text-gray-500"
+                      onClick={() => seteye(!eye)}
+                    >
+                      <IoEye />
+                    </span>
+                  ) : (
+                    <span
+                      onClick={() => seteye(!eye)}
+                      className="absolute right-3 top-[68%] -translate-y-[50%] cursor-pointer text-gray-500"
+                    >
+                      <IoMdEyeOff />
+                    </span>
+                  )}
+
                   {formik.touched.password && formik.errors.password ? (
                     <span className="text-red-500">
                       {formik.errors.password}

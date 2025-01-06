@@ -8,8 +8,10 @@ import { useGetProductByCategoryQuery } from "../../Features/Api/PtoductApi";
 import Heading from "../CommonComponents/Heading";
 import ProductCart from "../CommonComponents/ProductCart";
 import Slider from "react-slick";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
+  // todo: add slider settings
   const settings = {
     dots: false,
     infinite: true,
@@ -17,7 +19,7 @@ const ProductDetails = () => {
     slidesToShow: 4,
     slidesToScroll: 3,
   };
-
+  // todo: fatch data from api
   const Params = useParams();
   const { data, error, isLoading } = useGetsingleProductQuery(
     parseInt(Params.id),
@@ -25,7 +27,8 @@ const ProductDetails = () => {
 
   const ProductByCategory = useGetProductByCategoryQuery(data?.category);
   const relatedProducts = ProductByCategory?.data?.products || [];
-  console.log(relatedProducts[0]);
+
+  const navigate = useNavigate();
 
   return (
     <div className="container">
@@ -46,7 +49,12 @@ const ProductDetails = () => {
             <div className="pb-[140px]">
               <Slider {...settings}>
                 {relatedProducts?.map((item) => (
-                  <ProductCart ItemData={item} />
+                  <div
+                    key={item.id}
+                    onClick={() => navigate(`/productdetails/${item.id}`)}
+                  >
+                    <ProductCart ItemData={item} />
+                  </div>
                 ))}
               </Slider>
             </div>

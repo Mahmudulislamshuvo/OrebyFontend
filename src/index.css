@@ -34,7 +34,7 @@
   *,
   *::before,
   *::after {
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
 
   img,
@@ -58,7 +58,6 @@
   }
 
   button {
-    border: none;
     cursor: pointer;
   }
 
