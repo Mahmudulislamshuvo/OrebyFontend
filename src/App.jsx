@@ -11,6 +11,7 @@ import ProductPage from "./Pages/ProductsPage/ProductPage";
 import ProductDetailsPage from "./Pages/ProductDetailsPage/ProductDetailsPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import WhitelistPage from "./Pages/WhitlistPage/WhitelistPage";
+import AddtoCartPage from "./Pages/AddToCartPage/AddtoCartPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
         <Route path="/productdetails" element={<ProductPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/whitelist" element={<WhitelistPage />}></Route>
+        <Route path="/addtocart" element={<AddtoCartPage />}></Route>
       </Route>
     </Route>,
   ),
