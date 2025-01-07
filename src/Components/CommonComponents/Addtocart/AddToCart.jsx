@@ -89,11 +89,11 @@ const AddToCart = () => {
         {/* cart design */}
         {/* buttons */}
         <div className="mt-10 flex items-center justify-between">
-          <button className="rounded border-2 border-[rgba(0,0,0,0.5)] px-12 py-4 font-poppins text-base font-medium text-text2_black_full">
+          <button className="rounded border-2 border-[rgba(0,0,0,0.5)] px-12 py-4 font-poppins text-base font-medium text-text2_black_full transition-all hover:border-none hover:bg-red_DB4444 hover:text-whiteColor">
             Return To Shop
           </button>
-          <button className="rounded border-2 border-[rgba(0,0,0,0.5)] px-12 py-4 font-poppins text-base font-medium text-text2_black_full">
-            Return To Shop
+          <button className="rounded border-2 border-[rgba(0,0,0,0.5)] px-12 py-4 font-poppins text-base font-medium text-text2_black_full transition-all hover:border-none hover:bg-red_DB4444 hover:text-whiteColor">
+            Update Cart
           </button>
         </div>
         {/* buttons */}
@@ -113,21 +113,38 @@ const AddToCart = () => {
           </div>
           {/* Coupon code desiggn */}
           <div className="w-[40%]">
-            <div>
+            <div className="rounded border-2 border-[#000] px-6 py-8">
               <h3 className="font-poppins text-xl font-medium text-text2_black_full">
                 Cart Total
               </h3>
               <div className="flex items-center justify-between border-b-2 border-[rgba(0,0,0,0.5)] py-4">
-                <h5>Subtotal:</h5>
-                <h5>$1750</h5>
+                <h5 className="font-poppins text-base text-text2_black_full">
+                  Subtotal:
+                </h5>
+                <h5 className="font-poppins text-base text-text2_black_full">
+                  $1750
+                </h5>
               </div>
               <div className="flex items-center justify-between border-b-2 border-[rgba(0,0,0,0.5)] py-4">
-                <h5>Shipping:</h5>
-                <h5>Free</h5>
+                <h5 className="font-poppins text-base text-text2_black_full">
+                  Shipping:
+                </h5>
+                <h5 className="font-poppins text-base text-text2_black_full">
+                  Free
+                </h5>
               </div>
               <div className="flex items-center justify-between py-4">
-                <h5>Total:</h5>
-                <h5>$1750</h5>
+                <h5 className="font-poppins text-base text-text2_black_full">
+                  Total:
+                </h5>
+                <h5 className="font-poppins text-base text-text2_black_full">
+                  $1750
+                </h5>
+              </div>
+              <div className="flex justify-center">
+                <button className="mt-4 rounded bg-red_DB4444 px-12 py-4 font-poppins text-base font-medium text-white">
+                  Procees to checkout
+                </button>
               </div>
             </div>
           </div>
