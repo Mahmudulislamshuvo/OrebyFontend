@@ -67,12 +67,6 @@
 }
 
 @layer components {
-  .MyaccountCommon {
-    font-family: var(--poppings);
-    font-size: 16px;
-    line-height: 24px;
-    color: rgba(0, 0, 0, 0.5);
-  }
   .cartNotification {
     position: relative;
   }
@@ -143,5 +137,10 @@
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: #0000ff;
     border-radius: 10px;
+  }
+  .MyaccountCommon {
+    font-family: var(--poppings);
+    font-size: 16px;
+    line-height: 24px;
   }
 }
