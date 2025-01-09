@@ -113,11 +113,11 @@ const Navbar = () => {
               <span className="cartNotification cursor-pointer">
                 <RiShoppingCart2Line />
               </span>
-              <div className="userRedCircle relative rounded-full bg-red_DB4444 p-[5px] text-center text-whitesmoke_F5F5F5">
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-red_DB4444 text-center text-xl text-whitesmoke_F5F5F5">
                 <span
                   onClick={AccountDetails}
                   ref={AccountRef}
-                  className="h-5 w-5 cursor-pointer leading-none"
+                  className="cursor-pointer"
                 >
                   <FiUser />
                 </span>
