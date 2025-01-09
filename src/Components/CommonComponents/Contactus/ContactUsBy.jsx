@@ -1,9 +1,25 @@
-import Input from "../Input";
 import React from "react";
 import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
+import { useFormik } from "formik";
+import { ContactusYupSchema } from "../../../Validations/Schema/LoginYupSchema";
 
 const ContactUsBy = () => {
+  // Formik things
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      name: "",
+      phone: "",
+      text: "",
+    },
+    validationSchema: ContactusYupSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+  // Formik things end
+
   return (
     <div className="container">
       <div className="flex">
@@ -49,21 +65,70 @@ const ContactUsBy = () => {
         {/* contact us Right Design */}
         <div className="basis-2/3 px-8 py-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
           <div className="flex items-center gap-x-4">
-            <Input width={"235px"} placeholer={"Name *"} />
-            <Input width={"235px"} placeholer={"Email *"} />
-            <Input width={"235px"} placeholer={"Phone *"} />
+            <div>
+              <input
+                type="text"
+                placeholder="Input Your Name"
+                id="name"
+                name="name"
+                className="w-[235px] rounded bg-whitesmoke_F5F5F5 px-4 py-[13px]"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.name && formik.touched.name ? (
+                <div className="mt-2 text-red-500">{formik.errors.name}</div>
+              ) : null}
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Input Your Email"
+                id="email"
+                name="email"
+                className="w-[235px] rounded bg-whitesmoke_F5F5F5 px-4 py-[13px]"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.email && formik.touched.email ? (
+                <div className="text-red-500">{formik.errors.email}</div>
+              ) : null}
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Input Your Phone"
+                id="phone"
+                name="phone"
+                className="w-[235px] rounded bg-whitesmoke_F5F5F5 px-4 py-[13px]"
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.phone && formik.touched.phone ? (
+                <div className="text-red-500">{formik.errors.phone}</div>
+              ) : null}
+            </div>
           </div>
           <textarea
             placeholder="Your Message"
-            id="Message"
-            name="Message"
+            id="text"
+            name="text"
             className="mt-[45px] min-h-[50%] w-[93.4%] overflow-hidden rounded bg-whitesmoke_F5F5F5 p-4 text-start font-poppins"
+            value={formik.values.text}
+            onChange={formik.handleChange}
           />
-          <div className="mr-[6.6%] mt-8 text-end">
-            <button className="rounded bg-red_DB4444 px-12 py-4 font-poppins font-medium text-whiteColor">
-              Send Massage
-            </button>
-          </div>
+          {formik.errors.text && formik.touched.text ? (
+            <div className="text-red-500">{formik.errors.text}</div>
+          ) : null}
+          <form onSubmit={formik.handleSubmit}>
+            <div className="mr-[6.6%] mt-8 text-end">
+              <button
+                type="submit"
+                className="rounded bg-red_DB4444 px-12 py-4 font-poppins font-medium text-whiteColor"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
         </div>
         {/* contact us Right Design end */}
       </div>
