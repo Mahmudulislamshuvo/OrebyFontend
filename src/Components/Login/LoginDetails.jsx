@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { LoginYupSchema } from "../../Validations/Schema/LoginYupSchema";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const LoginDetails = () => {
   const [eye, seteye] = useState(false);
@@ -130,12 +131,12 @@ const LoginDetails = () => {
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    to={"/signup"}
                     className="text-primary-600 dark:text-primary-500 font-medium hover:underline"
                   >
                     Sign up
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { LuSearch } from "react-icons/lu";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { FiShoppingBag, FiUser } from "react-icons/fi";
@@ -48,17 +48,17 @@ const Navbar = () => {
     {
       id: 2,
       Item: "Contact",
-      pathRoute: "/contact",
+      pathRoute: "/contactus",
     },
     {
       id: 3,
       Item: "About",
-      pathRoute: "/about",
+      pathRoute: "/aboutus",
     },
     {
       id: 4,
       Item: "SignUp",
-      pathRoute: "/singup",
+      pathRoute: "/signup",
     },
   ];
 
@@ -67,7 +67,9 @@ const Navbar = () => {
       <div className="container">
         <div className="flex items-center justify-between pb-4 pt-10">
           <div>
-            <h1 className="font-inter text-[24px] font-bold">Exclusive</h1>
+            <h1 className="font-inter text-[24px] font-bold">
+              <Link to={"/"}>Exclusive</Link>
+            </h1>
           </div>
           <div>
             <ul className="flex gap-x-12 font-poppins text-base">

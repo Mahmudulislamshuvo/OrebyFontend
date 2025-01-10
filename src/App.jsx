@@ -15,6 +15,8 @@ import AddtoCartPage from "./Pages/AddToCartPage/AddtoCartPage";
 import MyaccountPage from "./Pages/MyaccountPage/MyaccountPage";
 import AboutPage from "./Pages/AboutPage/AboutPage";
 import ContactUsPage from "./Pages/ContactUsPage/ContactUsPage";
+import SignUp from "./Pages/SignUp/SignUp";
+import ErrorPage from "./Pages/ErrorPage/EroorPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +35,8 @@ const router = createBrowserRouter(
         <Route path="/account" element={<MyaccountPage />}></Route>
         <Route path="/aboutus" element={<AboutPage />}></Route>
         <Route path="/contactus" element={<ContactUsPage />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="*" element={<ErrorPage />}></Route>
       </Route>
     </Route>,
   ),
