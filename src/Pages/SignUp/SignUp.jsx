@@ -153,7 +153,7 @@ const SignUp = () => {
                     Already have an account?
                     <Link
                       to={"/login"}
-                      className="font-poppins text-gray-700 underline"
+                      className="ml-4 font-poppins text-gray-700 underline"
                     >
                       Log in
                     </Link>
