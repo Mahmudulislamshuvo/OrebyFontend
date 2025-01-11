@@ -28,8 +28,6 @@ const ProductCommonLayout = ({
     rows: row,
   };
 
-  console.log(ComponentData);
-
   const sliderRef = useRef(null);
 
   const next = () => {

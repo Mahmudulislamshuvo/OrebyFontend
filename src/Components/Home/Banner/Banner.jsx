@@ -3,8 +3,11 @@ import BannerImg from "../../../assets/Banner/BannerImg.jpg";
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import BannerCetegories from "../../CommonComponents/BannerCetegories";
+import { useGetallBannerQuery } from "../../../Features/Api/exclusiveApi.js";
+import BannerSkeliton from "../../CommonComponents/Skeletons/BannerSkeliton.jsx";
 
 const Banner = () => {
+  // Silder settings
   const [CurrentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
@@ -63,6 +66,10 @@ const Banner = () => {
       setCurrentSlide(currentSlide);
     },
   };
+  // Silder settings end
+
+  const { data, errors, isLoading } = useGetallBannerQuery();
+  console.log(data);
 
   return (
     <div>
@@ -72,17 +79,24 @@ const Banner = () => {
             <BannerCetegories />
           </div>
           <div className="relative w-[75%]">
-            <Slider {...settings}>
-              {[...new Array(10)].map(() => (
-                <div className="h-[352px] w-[892px] pl-11 pt-10 outline-none focus:outline-none">
-                  <img
-                    src={BannerImg}
-                    alt={BannerImg}
-                    className="h-[352px] w-full border-none"
-                  />
-                </div>
-              ))}
-            </Slider>
+            {isLoading ? (
+              <BannerSkeliton />
+            ) : (
+              <Slider {...settings}>
+                {data?.success.map((BannerImg, index) => (
+                  <div
+                    key={index}
+                    className="h-[352px] w-[892px] pl-11 pt-10 outline-none focus:outline-none"
+                  >
+                    <img
+                      src={BannerImg.image}
+                      alt={BannerImg.image}
+                      className="h-[352px] w-full border-none"
+                    />
+                  </div>
+                ))}
+              </Slider>
+            )}
           </div>
         </div>
       </div>
