@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ImageGallery from "../CommonComponents/ProductsDetails/ImageGallery";
-import { useGetsingleProductQuery } from "../../Features/Api/PtoductApi";
 import SpacificProductDetails from "../CommonComponents/ProductsDetails/SpacificProductDetails";
 import { useParams } from "react-router-dom";
 import ProductDetailsSkeleton from "../CommonComponents/Skeletons/ProductDetailsSkeleton";
@@ -9,6 +8,7 @@ import Heading from "../CommonComponents/Heading";
 import ProductCart from "../CommonComponents/ProductCart";
 import Slider from "react-slick";
 import { Link, useNavigate } from "react-router-dom";
+import { useGetSingleProductQuery } from "../../Features/Api/exclusiveApi.js";
 
 const ProductDetails = () => {
   // todo: add slider settings
@@ -21,7 +21,7 @@ const ProductDetails = () => {
   };
   // todo: fatch data from api
   const Params = useParams();
-  const { data, error, isLoading } = useGetsingleProductQuery(
+  const { data, error, isLoading } = useGetSingleProductQuery(
     parseInt(Params.id),
   );
 

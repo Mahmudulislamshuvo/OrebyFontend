@@ -50,19 +50,21 @@ const ProductCommonLayout = ({
           SliderPrev={prev}
           IsButton={IsButton}
         />
-        <Slider ref={sliderRef} {...settings}>
-          {isLoading
-            ? [...new Array(6)].map((_, index) => (
-                <div>
-                  <ProductCartSkeleton />
-                </div>
-              ))
-            : ComponentData.map((item, index) => (
-                <div>
-                  <ProductCart ItemData={item} />
-                </div>
-              ))}
-        </Slider>
+        <div>
+          <Slider ref={sliderRef} {...settings}>
+            {isLoading
+              ? [...new Array(6)].map((_, index) => (
+                  <div>
+                    <ProductCartSkeleton />
+                  </div>
+                ))
+              : ComponentData.map((item, index) => (
+                  <div>
+                    <ProductCart ItemData={item} />
+                  </div>
+                ))}
+          </Slider>
+        </div>
       </div>
     </div>
   );

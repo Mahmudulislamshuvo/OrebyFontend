@@ -9,7 +9,7 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
   const [activeSizeId, setActiveSizeId] = useState(null);
 
   const {
-    title,
+    name,
     rating,
     stock,
     reviews,
@@ -45,7 +45,7 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
     <div>
       <div>
         <h3 className="pb-4 text-2xl font-semibold tracking-[3%] text-text2_black_full">
-          {title}
+          {name}
         </h3>
         {/* stars and instock */}
         <div className="flex items-center pb-4">

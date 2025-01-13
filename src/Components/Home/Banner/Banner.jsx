@@ -69,7 +69,6 @@ const Banner = () => {
   // Silder settings end
 
   const { data, errors, isLoading } = useGetallBannerQuery();
-  console.log(data);
 
   return (
     <div>

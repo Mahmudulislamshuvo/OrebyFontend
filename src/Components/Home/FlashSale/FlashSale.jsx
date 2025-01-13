@@ -2,9 +2,13 @@ import React from "react";
 import ProductCommonLayout from "../../CommonComponents/ProductCommonLayout";
 import ProductCart from "../../CommonComponents/ProductCart";
 import { useGetAllProductQuery } from "../../../Features/Api/PtoductApi";
+import { useGetAllProductDetailsQuery } from "../../../Features/Api/exclusiveApi";
 
 const FlashSale = () => {
-  const { data, error, isLoading } = useGetAllProductQuery();
+  const { data, error, isLoading } = useGetAllProductDetailsQuery();
+  const AllFlaseSaleProduct = data?.data?.map((item) => {
+    return item.product;
+  });
 
   return (
     <div className="container">
@@ -18,7 +22,7 @@ const FlashSale = () => {
           Isarrow={true}
           SlidshowNumber={4}
           autoplay={true}
-          ComponentData={data ? data.products : []}
+          ComponentData={AllFlaseSaleProduct ? AllFlaseSaleProduct : []}
           isLoading={isLoading}
         />
         <div className="mb-15 mt-[60px] flex items-center justify-center text-center">

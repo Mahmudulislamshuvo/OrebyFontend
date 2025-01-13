@@ -7,6 +7,7 @@ import { BsSmartwatch } from "react-icons/bs";
 import { CiCamera } from "react-icons/ci";
 import { GiHeadphones } from "react-icons/gi";
 import { TbDeviceGamepad } from "react-icons/tb";
+import { useGetAllCategoryQuery } from "../../../Features/Api/exclusiveApi";
 
 const categoryBrows = [
   { id: 1, name: "Phone", img: <MdOutlinePhoneIphone /> },
@@ -24,6 +25,9 @@ const categoryBrows = [
 ];
 
 const Category = () => {
+  const { data, errors, isLoading } = useGetAllCategoryQuery();
+  console.log(data?.data);
+
   return (
     <>
       <div className="container">
@@ -37,7 +41,7 @@ const Category = () => {
             Isarrow={true}
             reviews={10}
             SlidshowNumber={6}
-            ComponentData={categoryBrows}
+            ComponentData={data?.data}
           />
         </div>
       </div>

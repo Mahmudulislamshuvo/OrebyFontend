@@ -16,19 +16,19 @@ const ProductCart = ({ ItemData, isLoading }) => {
   return (
     <div>
       <div className="container">
-        <Link to={`/productdetails/${ItemData.id}`}>
+        <Link to={`/productdetails/${ItemData?._id}`}>
           <div>
             <div className="group relative h-[250px] w-[270px] overflow-hidden rounded bg-whitesmoke_F5F5F5">
-              {ItemData.discountPercentage && (
+              {ItemData?.discount && (
                 <span className="ml-3 mt-3 inline-block rounded bg-red_DB4444 px-3 py-1 text-xs font-normal text-whiteColor">
-                  {`-${ItemData.discountPercentage}%`}
+                  {`-${ItemData?.discount}%`}
                 </span>
               )}
 
               <div className="h-[180] w-[190] px-10 pt-3">
                 <img
-                  src={ItemData?.images[0]}
-                  alt={ItemData?.images[0]}
+                  src={ItemData?.image[0]}
+                  alt={ItemData?.image[0]}
                   className="w-full object-cover"
                 />
               </div>
@@ -49,30 +49,31 @@ const ProductCart = ({ ItemData, isLoading }) => {
             <div>
               <div className="p-4">
                 <h3 className="truncate font-poppins text-base font-medium text-text2_black_full">
-                  {ItemData?.title ? ItemData.title : "ProductName"}
+                  {ItemData?.name ? ItemData.name : "ProductName"}
                 </h3>
                 <div className="mt-2 flex items-center gap-2">
                   <span className="font-poppins text-base font-medium text-red_DB4444">
                     {ItemData?.price}
                   </span>
+                  {/* discount calculation */}
                   <span className="font-base font-poppins text-text2_black_full line-through opacity-50">
-                    {ItemData.price > 0
+                    {ItemData?.price > 0
                       ? `${calculateBeforePrice(
-                          ItemData.price,
-                          ItemData.discountPercentage,
+                          ItemData?.price,
+                          ItemData?.discount,
                         ).toFixed(2)}`
                       : null}
                   </span>
                 </div>
                 <div className="mt-2 flex items-center gap-1 text-center">
-                  <Star rating={ItemData.rating} />
+                  <Star rating={ItemData?.rating ? ItemData.rating : "4"} />
                   {/* {[...new Array(5)].map((_, index) => (
                 <span className="flex text-YellowStart_FFAD33">
                   <FaStar />
                 </span>
               ))} */}
                   <span className="block font-poppins text-sm font-semibold opacity-50">
-                    {`(${ItemData.reviews ? ItemData.reviews.length : `00`})`}
+                    {`(${ItemData?.review ? ItemData.review.length : `00`})`}
                   </span>
                 </div>
               </div>
