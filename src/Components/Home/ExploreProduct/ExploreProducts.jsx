@@ -2,9 +2,15 @@ import React from "react";
 import ProductCommonLayout from "../../CommonComponents/ProductCommonLayout";
 import ProductCart from "../../CommonComponents/ProductCart";
 import { useGetAllProductQuery } from "../../../Features/Api/PtoductApi";
+import { useGetAllProductDetailsQuery } from "../../../Features/Api/exclusiveApi";
 
 const ExploreProducts = () => {
-  const { data, error, isLoading } = useGetAllProductQuery();
+  const { data, error, isLoading } = useGetAllProductDetailsQuery();
+
+  const AllPruduct = data?.data?.map((item) => {
+    return item.product;
+  });
+
   return (
     <div className="container">
       <div className="border-b-black_363738/80 border-b-2 pb-[60px]">
@@ -14,7 +20,7 @@ const ExploreProducts = () => {
           description={"Explore Our Products"}
           Isarrow={true}
           SlidshowNumber={4}
-          ComponentData={data ? data.products : []}
+          ComponentData={AllPruduct}
           isLoading={isLoading}
           row={2}
         />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaAngleDown, FaAngleRight } from "react-icons/fa";
 
 const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -10,9 +11,9 @@ const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
 
   return (
     <div>
-      <div className="">
+      <div>
         {CategoryData?.map((items) => (
-          <div key={items.id} className="transition-all">
+          <div key={`category-${items.id}`} className="transition-all">
             <div className="group flex items-center justify-between transition-all hover:bg-red_DB4444 hover:bg-opacity-20 hover:pl-3 hover:pt-4">
               <li className="cursor-pointer pb-4 font-poppins text-base leading-6 text-text2_black_full group-hover:text-whiteColor">
                 {items.name}
@@ -34,7 +35,7 @@ const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
               items.subCategory &&
               items.subCategory.map((subItem) => (
                 <div
-                  key={subItem.id}
+                  key={`subcategory-${subItem.id}`}
                   className="my-1 ml-2 flex flex-col bg-gray-300 transition-all hover:bg-blue-200"
                 >
                   <li className="text-md text-text_black000000 cursor-pointer py-2 pl-5 font-poppins font-normal transition-all hover:px-5">

@@ -4,6 +4,8 @@ import AboutCategoryAwaiting from "../CommonComponents/AboutCategoryAwaiting";
 import CategorySkeleton from "../CommonComponents/CategorySkeleton";
 
 const ProductLeft = ({ CategoryData = [], IsLoading }) => {
+  console.log(CategoryData);
+
   return (
     <>
       <div className="w-[25%]">

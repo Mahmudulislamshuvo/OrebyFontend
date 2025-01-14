@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useGetAllProductQuery } from "../../Features/Api/PtoductApi";
 import ProductCart from "../CommonComponents/ProductCart";
+import { useGetAllProductsQuery } from "../../Features/Api/exclusiveApi";
 
 const ProductRight = () => {
-  const { data, error, isLoading } = useGetAllProductQuery();
+  const { data, error, isLoading } = useGetAllProductsQuery();
   const [page, setpage] = useState(1);
   const [pageShowItem, setpageShowItem] = useState(9);
-  let allProducts = data?.products?.length / pageShowItem || 1;
-  console.log(allProducts);
+  let allProducts = CategoryData?.length / pageShowItem || 1;
 
   // pagination Functionality
   const HandlePageNumber = (index) => {
@@ -45,11 +45,11 @@ const ProductRight = () => {
           </select>
         </div>
         <div className="mt-[30px] flex flex-wrap justify-between gap-y-5">
-          {data?.products
-            ?.slice(page * 9 - 9, page * pageShowItem)
-            .map((item) => (
+          {CategoryData?.slice(page * 9 - 9, page * pageShowItem).map(
+            (item) => (
               <ProductCart ItemData={item} />
-            ))}
+            ),
+          )}
         </div>
         {/* <div className="flex gap-x-5 pb-[100px] pt-10">
           <span className="cursor-pointer bg-text2_black_full px-6 py-1 font-poppins text-base text-whiteColor">

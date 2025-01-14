@@ -3,9 +3,11 @@ import ProductLeft from "../../Components/Products/ProductLeft";
 import PracticeBreadCrumb from "../../Components/CommonComponents/PracticeBreadCrumb";
 import ProductRight from "../../Components/Products/ProductRight";
 import { useGetProductCategoryListQuery } from "../../Features/Api/PtoductApi";
+import { useGetAllCategoryQuery } from "../../Features/Api/exclusiveApi";
 
 const ProductPage = () => {
-  const { data, error, isLoading } = useGetProductCategoryListQuery();
+  const { data, error, isLoading } = useGetAllCategoryQuery();
+  console.log(data?.data);
 
   return (
     <div className="container">
@@ -13,8 +15,8 @@ const ProductPage = () => {
         <PracticeBreadCrumb />
       </div>
       <div className="flex justify-between">
-        <ProductLeft CategoryData={data} IsLoading={isLoading} />
-        <ProductRight CategoryData={data} />
+        <ProductLeft CategoryData={data?.data} IsLoading={isLoading} />
+        {/* <ProductRight /> */}
       </div>
     </div>
   );

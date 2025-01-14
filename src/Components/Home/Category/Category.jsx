@@ -8,6 +8,7 @@ import { CiCamera } from "react-icons/ci";
 import { GiHeadphones } from "react-icons/gi";
 import { TbDeviceGamepad } from "react-icons/tb";
 import { useGetAllCategoryQuery } from "../../../Features/Api/exclusiveApi";
+import BrowsCategorySkeleton from "../../CommonComponents/Skeletons/BrowsCategorySkeleton";
 
 const categoryBrows = [
   { id: 1, name: "Phone", img: <MdOutlinePhoneIphone /> },
@@ -26,14 +27,13 @@ const categoryBrows = [
 
 const Category = () => {
   const { data, errors, isLoading } = useGetAllCategoryQuery();
-  console.log(data?.data);
 
   return (
     <>
       <div className="container">
         <div className="border-b-black_363738/80 border-b-2 pb-[60px]">
           <ProductCommonLayout
-            ProductCart={CategoryCommon}
+            ProductCart={isLoading ? BrowsCategorySkeleton : CategoryCommon}
             timeofOffer={2}
             timeStamp={false}
             tittle={"Categories"}

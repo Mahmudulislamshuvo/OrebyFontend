@@ -14,11 +14,11 @@ const Homepage = () => {
       <Banner />
       <FlashSale />
       <Category />
-      {/* <BestSelling />
+      <BestSelling />
       <ExperiencePoster />
       <ExploreProducts />
       <NewArrival />
-      <ContactUs /> */}
+      <ContactUs />
     </div>
   );
 };
