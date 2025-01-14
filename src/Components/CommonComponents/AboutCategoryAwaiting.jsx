@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaAngleDown, FaAngleRight } from "react-icons/fa";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -10,32 +10,41 @@ const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
   };
 
   return (
-    <div>
+    <>
       <div>
         {CategoryData?.map((items) => (
-          <div key={`category-${items.id}`} className="transition-all">
+          <div key={`category-${items._id}`} className="transition-all">
             <div className="group flex items-center justify-between transition-all hover:bg-red_DB4444 hover:bg-opacity-20 hover:pl-3 hover:pt-4">
               <li className="cursor-pointer pb-4 font-poppins text-base leading-6 text-text2_black_full group-hover:text-whiteColor">
                 {items.name}
               </li>
-              <span
+              <div
                 className="cursor-pointer pb-4 pr-24 group-hover:text-whiteColor"
-                onClick={() => handleDropdown(items.id)}
+                onClick={() => handleDropdown(items._id)}
               >
-                {items.subCategory ? (
-                  openDropdown === items.id ? (
-                    <FaAngleDown />
-                  ) : (
-                    <FaAngleRight />
-                  )
-                ) : null}
-              </span>
+                {/* checking subcategory is there or not and show the Icons */}
+                {items?.subCategory && items?.subCategory?.length > 0 && (
+                  <div>
+                    <span
+                      className="pr-10 text-xl text-text2_black_full group-hover:text-whiteColor"
+                      onClick={() => handleDropdown(items._id)}
+                    >
+                      {openDropdown === items._id ? (
+                        <IoIosArrowUp />
+                      ) : (
+                        <IoIosArrowDown />
+                      )}
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
-            {openDropdown === items.id &&
+            {/* dropdown */}
+            {openDropdown === items._id &&
               items.subCategory &&
-              items.subCategory.map((subItem) => (
+              items?.subCategory?.map((subItem) => (
                 <div
-                  key={`subcategory-${subItem.id}`}
+                  key={`subcategory-${subItem._id}`}
                   className="my-1 ml-2 flex flex-col bg-gray-300 transition-all hover:bg-blue-200"
                 >
                   <li className="text-md text-text_black000000 cursor-pointer py-2 pl-5 font-poppins font-normal transition-all hover:px-5">
@@ -46,7 +55,7 @@ const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

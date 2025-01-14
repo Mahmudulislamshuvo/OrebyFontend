@@ -4,12 +4,10 @@ import AboutCategoryAwaiting from "../CommonComponents/AboutCategoryAwaiting";
 import CategorySkeleton from "../CommonComponents/CategorySkeleton";
 
 const ProductLeft = ({ CategoryData = [], IsLoading }) => {
-  console.log(CategoryData);
-
   return (
     <>
       <div className="w-[25%]">
-        <>
+        <div className="mb-20">
           {IsLoading ? (
             <CategorySkeleton />
           ) : (
@@ -49,7 +47,7 @@ const ProductLeft = ({ CategoryData = [], IsLoading }) => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       </div>
     </>
   );

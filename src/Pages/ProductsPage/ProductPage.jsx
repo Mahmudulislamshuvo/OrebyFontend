@@ -7,7 +7,6 @@ import { useGetAllCategoryQuery } from "../../Features/Api/exclusiveApi";
 
 const ProductPage = () => {
   const { data, error, isLoading } = useGetAllCategoryQuery();
-  console.log(data?.data);
 
   return (
     <div className="container">
@@ -16,7 +15,7 @@ const ProductPage = () => {
       </div>
       <div className="flex justify-between">
         <ProductLeft CategoryData={data?.data} IsLoading={isLoading} />
-        {/* <ProductRight /> */}
+        <ProductRight />
       </div>
     </div>
   );

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useGetAllProductQuery } from "../../Features/Api/PtoductApi";
 import ProductCart from "../CommonComponents/ProductCart";
-import { useGetAllProductsQuery } from "../../Features/Api/exclusiveApi";
+import { useGetAllProductsfromDbQuery } from "../../Features/Api/exclusiveApi";
 
 const ProductRight = () => {
-  const { data, error, isLoading } = useGetAllProductsQuery();
+  const { data, errors, isLoading } = useGetAllProductsfromDbQuery();
+
+  const CategoryData = data?.data;
   const [page, setpage] = useState(1);
   const [pageShowItem, setpageShowItem] = useState(9);
   let allProducts = CategoryData?.length / pageShowItem || 1;
@@ -15,6 +16,7 @@ const ProductRight = () => {
       setpage(index);
     }
   };
+  console.log(CategoryData);
 
   // const HandleNextbtn = (nextPage) => {
   //   if (nextPage <= Math.ceil(allProducts)) {
@@ -35,6 +37,7 @@ const ProductRight = () => {
         <div className="flex justify-end">
           <span className="pr-3">Show :</span>
           <select
+            onChange={(e) => setpageShowItem(e.target.value)}
             name=""
             id=""
             className="custom-select rounded-sm border-2 border-text2_black_full px-10 py-1 text-center text-text2_black_full"
@@ -51,20 +54,7 @@ const ProductRight = () => {
             ),
           )}
         </div>
-        {/* <div className="flex gap-x-5 pb-[100px] pt-10">
-          <span className="cursor-pointer bg-text2_black_full px-6 py-1 font-poppins text-base text-whiteColor">
-            1
-          </span>
-          <span className="cursor-pointer bg-text2_black_full px-6 py-1 font-poppins text-base text-whiteColor">
-            1
-          </span>
-          <span className="cursor-pointer bg-text2_black_full px-6 py-1 font-poppins text-base text-whiteColor">
-            1
-          </span>
-          <span className="cursor-pointer bg-text2_black_full px-6 py-1 font-poppins text-base text-whiteColor">
-            1
-          </span>
-        </div> */}
+
         <div className="pb-[100px] pt-10 text-center">
           <nav aria-label="Page navigation example">
             <ul className="inline-flex h-10 -space-x-px text-base">

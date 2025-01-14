@@ -21,7 +21,7 @@ export const exclusiveApi = createApi({
     GetBestSellingProduct: builder.query({
       query: () => "/bestselling",
     }),
-    GetAllProducts: builder.query({
+    GetAllProductsfromDb: builder.query({
       query: () => "/product",
     }),
   }),
@@ -33,5 +33,5 @@ export const {
   useGetSingleProductQuery,
   useGetAllCategoryQuery,
   useGetBestSellingProductQuery,
-  useGetAllProductsQuery,
+  useGetAllProductsfromDbQuery,
 } = exclusiveApi;
