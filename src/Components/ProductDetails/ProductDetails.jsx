@@ -3,7 +3,6 @@ import ImageGallery from "../CommonComponents/ProductsDetails/ImageGallery";
 import SpacificProductDetails from "../CommonComponents/ProductsDetails/SpacificProductDetails";
 import { useParams } from "react-router-dom";
 import ProductDetailsSkeleton from "../CommonComponents/Skeletons/ProductDetailsSkeleton";
-import { useGetProductByCategoryQuery } from "../../Features/Api/PtoductApi";
 import Heading from "../CommonComponents/Heading";
 import ProductCart from "../CommonComponents/ProductCart";
 import Slider from "react-slick";
@@ -40,7 +39,7 @@ const ProductDetails = () => {
           <div className="flex">
             <div className="mr-4 w-[60%]">
               <ImageGallery image={data?.data?.image} />
-            </div>{" "}
+            </div>
             <div className="w-[40%]">
               <SpacificProductDetails ProductDetailsData={data?.data} />
             </div>
@@ -55,9 +54,7 @@ const ProductDetails = () => {
                     key={item.id}
                     onClick={() => navigate(`/productdetails/${item.id}`)}
                   >
-                    <Link>
-                      <ProductCart ItemData={item} />
-                    </Link>
+                    <ProductCart ItemData={item} />
                   </div>
                 ))}
               </Slider>

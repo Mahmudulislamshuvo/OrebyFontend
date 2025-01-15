@@ -3,7 +3,10 @@ import BannerImg from "../../../assets/Banner/BannerImg.jpg";
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import BannerCetegories from "../../CommonComponents/BannerCetegories";
-import { useGetallBannerQuery } from "../../../Features/Api/exclusiveApi.js";
+import {
+  useGetallBannerQuery,
+  useGetAllCategoryQuery,
+} from "../../../Features/Api/exclusiveApi.js";
 import BannerSkeliton from "../../CommonComponents/Skeletons/BannerSkeliton.jsx";
 
 const Banner = () => {
@@ -69,13 +72,14 @@ const Banner = () => {
   // Silder settings end
 
   const { data, errors, isLoading } = useGetallBannerQuery();
+  const allCategory = useGetAllCategoryQuery();
 
   return (
     <div>
       <div className="container">
         <div className="flex">
           <div className="w-[25%] border-r-[1px] border-solid border-text2_black_full pt-10">
-            <BannerCetegories />
+            <BannerCetegories allCategory={allCategory} />
           </div>
           <div className="relative w-[75%]">
             {isLoading ? (

@@ -47,8 +47,8 @@ const Navbar = () => {
     },
     {
       id: 2,
-      Item: "Contact",
-      pathRoute: "/contactus",
+      Item: "Product",
+      pathRoute: "/productdetails",
     },
     {
       id: 3,
