@@ -6,18 +6,12 @@ import { TbRefresh, TbTruckDelivery } from "react-icons/tb";
 import Star from "../Star";
 
 const SpacificProductDetails = ({ ProductDetailsData }) => {
+  // console.log(ProductDetailsData);
+
   const [activeSizeId, setActiveSizeId] = useState(null);
 
-  const {
-    name,
-    rating,
-    stock,
-    reviews,
-    price,
-    description,
-    warrantyInformation,
-    category,
-  } = ProductDetailsData;
+  const { name, rating, stock, review, price, description, category } =
+    ProductDetailsData;
 
   const sizes = [
     {
@@ -53,7 +47,7 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
             <Star rating={rating} />
           </div>
           <span className="pr-4 text-text2_black_full opacity-50">
-            ({reviews.length} reviews)
+            ({review.length} reviews)
           </span>
           <span className="pr-4 text-text2_black_full opacity-50">|</span>
           <span
@@ -144,7 +138,7 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
                 Return Delivery
               </h3>
               <p className="font-poppins text-xs font-medium text-text2_black_full">
-                {warrantyInformation}
+                Free 30 Days Delivery Returns. Details
               </p>
             </div>
           </div>

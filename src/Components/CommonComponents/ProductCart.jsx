@@ -6,6 +6,8 @@ import Star from "./Star";
 import { Link, useNavigate } from "react-router-dom";
 
 const ProductCart = ({ ItemData, isLoading }) => {
+  console.log(ItemData);
+
   // Before price calculate another way to use
   // const runningPrice = ItemData.price;
   // const discountPercentage = ItemData.discountPercentage;

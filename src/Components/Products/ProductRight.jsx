@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import ProductCart from "../CommonComponents/ProductCart";
 import { useGetAllProductsfromDbQuery } from "../../Features/Api/exclusiveApi";
+import ProductCartSkeleton from "../../helpers/ProductsSkeliton";
+import { MdTableRows } from "react-icons/md";
+import { HiMiniViewColumns } from "react-icons/hi2";
 
 const ProductRight = () => {
   const { data, errors, isLoading } = useGetAllProductsfromDbQuery();
@@ -8,6 +11,8 @@ const ProductRight = () => {
   const CategoryData = data?.data;
   const [page, setpage] = useState(1);
   const [pageShowItem, setpageShowItem] = useState(9);
+  const [rowCoulm, setrowCoulm] = useState(false);
+
   let allProducts = CategoryData?.length / pageShowItem || 1;
 
   // pagination Functionality
@@ -16,20 +21,6 @@ const ProductRight = () => {
       setpage(index);
     }
   };
-  console.log(CategoryData);
-
-  // const HandleNextbtn = (nextPage) => {
-  //   if (nextPage <= Math.ceil(allProducts)) {
-  //     setpage(nextPage);
-  //   }
-  //   console.log(allProducts);
-  // };
-
-  // const HandlePreviousbtn = (previousPage) => {
-  //   if (previousPage > 0) {
-  //     setpage(previousPage);
-  //   }
-  // }
 
   return (
     <>
@@ -47,14 +38,43 @@ const ProductRight = () => {
             <option value="36">36</option>
           </select>
         </div>
-        <div className="mt-[30px] flex flex-wrap justify-between gap-y-5">
-          {CategoryData?.slice(page * 9 - 9, page * pageShowItem).map(
-            (item) => (
-              <ProductCart ItemData={item} />
-            ),
+        <div className="flex flex-row gap-x-5 text-2xl">
+          <span
+            className={!rowCoulm && "rounded bg-red-400 p-1 text-whiteColor"}
+            onClick={() => setrowCoulm(false)}
+          >
+            <MdTableRows />
+          </span>
+          <span
+            className={rowCoulm && "rounded bg-red-400 p-1 text-whiteColor"}
+            onClick={() => setrowCoulm(true)}
+          >
+            <HiMiniViewColumns />
+          </span>
+        </div>
+        <div className="flex flex-wrap justify-between gap-y-5">
+          {isLoading ? (
+            [...new Array(9)].map((_, index) => (
+              <div className="flex flex-wrap justify-between gap-y-5">
+                <ProductCartSkeleton />
+              </div>
+            ))
+          ) : (
+            <div
+              className={
+                rowCoulm
+                  ? "mt-[30px] flex w-full flex-col gap-y-5"
+                  : "mt-[30px] flex flex-wrap justify-between gap-y-5"
+              }
+            >
+              {CategoryData?.slice(page * 9 - 9, page * pageShowItem).map(
+                (item) => (
+                  <ProductCart ItemData={item} />
+                ),
+              )}
+            </div>
           )}
         </div>
-
         <div className="pb-[100px] pt-10 text-center">
           <nav aria-label="Page navigation example">
             <ul className="inline-flex h-10 -space-x-px text-base">

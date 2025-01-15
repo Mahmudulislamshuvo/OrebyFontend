@@ -25,7 +25,7 @@ const ImageGallery = ({ image }) => {
             </div>
           ))}
           {/* static img extra */}
-          <div className="rounded bg-whitesmoke_F5F5F5 px-6 py-3">
+          {/* <div className="rounded bg-whitesmoke_F5F5F5 px-6 py-3">
             <img
               src="https://images.unsplash.com/photo-1505820013142-f86a3439c5b2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1600&q=80"
               alt="https://images.unsplash.com/photo-1505820013142-f86a3439c5b2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1600&q=80"
@@ -36,7 +36,7 @@ const ImageGallery = ({ image }) => {
                 )
               }
             />
-          </div>
+          </div> */}
         </div>
         {/* Big Image with Zoom Effect */}
         <div className="flex h-[600px] w-[500px] items-center justify-center overflow-hidden rounded bg-whitesmoke_F5F5F5">

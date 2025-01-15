@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BiUnlink } from "react-icons/bi";
 
 export const exclusiveApi = createApi({
   reducerPath: "exclusive",
@@ -12,9 +13,6 @@ export const exclusiveApi = createApi({
     GetAllProductDetails: builder.query({
       query: () => "/flashsale",
     }),
-    GetSingleProduct: builder.query({
-      query: (id) => `/flashsale/${id}`,
-    }),
     GetAllCategory: builder.query({
       query: () => "/category",
     }),
@@ -24,14 +22,21 @@ export const exclusiveApi = createApi({
     GetAllProductsfromDb: builder.query({
       query: () => "/product",
     }),
+    GetSingleProduct: builder.query({
+      query: (id) => `/product/${id}`,
+    }),
+    GetSingleCategory: builder.query({
+      query: (id) => `/category/${id}`,
+    }),
   }),
 });
 
 export const {
   useGetallBannerQuery,
   useGetAllProductDetailsQuery,
-  useGetSingleProductQuery,
   useGetAllCategoryQuery,
   useGetBestSellingProductQuery,
   useGetAllProductsfromDbQuery,
+  useGetSingleProductQuery,
+  useGetSingleCategoryQuery,
 } = exclusiveApi;

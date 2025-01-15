@@ -8,7 +8,10 @@ import Heading from "../CommonComponents/Heading";
 import ProductCart from "../CommonComponents/ProductCart";
 import Slider from "react-slick";
 import { Link, useNavigate } from "react-router-dom";
-import { useGetSingleProductQuery } from "../../Features/Api/exclusiveApi.js";
+import {
+  useGetSingleCategoryQuery,
+  useGetSingleProductQuery,
+} from "../../Features/Api/exclusiveApi.js";
 
 const ProductDetails = () => {
   // todo: add slider settings
@@ -20,13 +23,11 @@ const ProductDetails = () => {
     slidesToScroll: 3,
   };
   // todo: fatch data from api
-  const Params = useParams();
-  const { data, error, isLoading } = useGetSingleProductQuery(
-    parseInt(Params.id),
-  );
+  const params = useParams();
+  const { data, error, isLoading } = useGetSingleProductQuery(params.id);
 
-  const ProductByCategory = useGetProductByCategoryQuery(data?.category);
-  const relatedProducts = ProductByCategory?.data?.products || [];
+  const ProductByCategory = useGetSingleCategoryQuery(data?.data.category._id);
+  const relatedProducts = ProductByCategory?.data?.data?.product || [];
 
   const navigate = useNavigate();
 
@@ -38,14 +39,15 @@ const ProductDetails = () => {
         <div>
           <div className="flex">
             <div className="mr-4 w-[60%]">
-              <ImageGallery image={data?.images} />
-            </div>
+              <ImageGallery image={data?.data?.image} />
+            </div>{" "}
             <div className="w-[40%]">
-              <SpacificProductDetails ProductDetailsData={data} />
+              <SpacificProductDetails ProductDetailsData={data?.data} />
             </div>
           </div>
           <div>
             <Heading description={false} tittle={"Related Item"} />
+            {/* releted product start */}
             <div className="pb-[140px]">
               <Slider {...settings}>
                 {relatedProducts?.map((item) => (
@@ -53,7 +55,9 @@ const ProductDetails = () => {
                     key={item.id}
                     onClick={() => navigate(`/productdetails/${item.id}`)}
                   >
-                    <ProductCart ItemData={item} />
+                    <Link>
+                      <ProductCart ItemData={item} />
+                    </Link>
                   </div>
                 ))}
               </Slider>
