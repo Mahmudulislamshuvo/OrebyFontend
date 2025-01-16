@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import ProductCart from "../CommonComponents/ProductCart";
-import { useGetAllProductsfromDbQuery } from "../../Features/Api/exclusiveApi";
+import {
+  useGetAllProductsfromDbQuery,
+  useGetSingleCategoryQuery,
+} from "../../Features/Api/exclusiveApi";
 import ProductCartSkeleton from "../../helpers/ProductsSkeliton";
 import { MdTableRows } from "react-icons/md";
 import { HiMiniViewColumns } from "react-icons/hi2";
 
-const ProductRight = () => {
-  const { data, errors, isLoading } = useGetAllProductsfromDbQuery();
+const ProductRight = ({ categoryid }) => {
+  const { data, errors, isLoading } = categoryid
+    ? useGetSingleCategoryQuery(categoryid)
+    : useGetAllProductsfromDbQuery();
 
   const CategoryData = data?.data;
   const [page, setpage] = useState(1);
@@ -19,6 +24,16 @@ const ProductRight = () => {
   const HandlePageNumber = (index) => {
     if (index > 0 && index <= Math.ceil(allProducts)) {
       setpage(index);
+    }
+  };
+
+  // handle No data page render
+
+  const IsCategoryData = (categoryid) => {
+    if (categoryid) {
+      return <ProductCart ItemData={item} />;
+    } else {
+      return <div> No Data available</div>;
     }
   };
 
@@ -67,10 +82,20 @@ const ProductRight = () => {
                   : "mt-[30px] flex flex-wrap justify-between gap-y-5"
               }
             >
-              {CategoryData?.slice(page * 9 - 9, page * pageShowItem).map(
-                (item) => (
-                  <ProductCart ItemData={item} />
-                ),
+              {categoryid ? (
+                data?.data?.product?.length > 0 ? (
+                  data.data.product
+                    ?.slice(page * 9 - 9, page * pageShowItem)
+                    .map((item) => <ProductCart ItemData={item} />)
+                ) : (
+                  <div className="text-center font-poppins text-3xl font-bold text-text2_black_full">
+                    No Data available
+                  </div>
+                )
+              ) : (
+                CategoryData.slice(page * 9 - 9, page * pageShowItem).map(
+                  (item) => <ProductCart ItemData={item} />,
+                )
               )}
             </div>
           )}

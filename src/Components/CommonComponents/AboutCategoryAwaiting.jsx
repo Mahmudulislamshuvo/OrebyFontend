@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
+const AboutCategoryAwaiting = ({
+  CategoryData,
+  IsLoading = false,
+  handleCategory,
+}) => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   // Handle dropDown
@@ -14,7 +18,10 @@ const AboutCategoryAwaiting = ({ CategoryData, IsLoading = false }) => {
       <div>
         {CategoryData?.map((items) => (
           <div key={`category-${items._id}`} className="transition-all">
-            <div className="group flex items-center justify-between transition-all hover:bg-red_DB4444 hover:bg-opacity-20 hover:pl-3 hover:pt-4">
+            <div
+              onClick={() => handleCategory(items._id)}
+              className="group flex items-center justify-between transition-all hover:bg-red_DB4444 hover:bg-opacity-20 hover:pl-3 hover:pt-4"
+            >
               <li className="cursor-pointer pb-4 font-poppins text-base leading-6 text-text2_black_full group-hover:text-whiteColor">
                 {items.name}
               </li>

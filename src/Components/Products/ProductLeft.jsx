@@ -3,7 +3,7 @@ import { GoDotFill } from "react-icons/go";
 import AboutCategoryAwaiting from "../CommonComponents/AboutCategoryAwaiting";
 import CategorySkeleton from "../CommonComponents/CategorySkeleton";
 
-const ProductLeft = ({ CategoryData = [], IsLoading }) => {
+const ProductLeft = ({ CategoryData = [], IsLoading, handleCategory }) => {
   return (
     <>
       <div className="w-[25%]">
@@ -14,6 +14,7 @@ const ProductLeft = ({ CategoryData = [], IsLoading }) => {
             <AboutCategoryAwaiting
               CategoryData={CategoryData}
               IsLoading={IsLoading}
+              handleCategory={handleCategory}
             />
           )}
           <div className="pt-10">
