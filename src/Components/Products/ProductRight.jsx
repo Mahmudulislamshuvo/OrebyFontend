@@ -28,7 +28,6 @@ const ProductRight = ({ categoryid }) => {
   };
 
   // handle No data page render
-  // handle No data page render
 
   const IsCategoryData = (categoryid) => {
     if (categoryid) {
