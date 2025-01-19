@@ -2,12 +2,23 @@ import React from "react";
 import cartImg from "../../../assets/AddtoCart/CartImg.png";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import { useSelector, useDispatch } from "react-redux";
+import { removeCart } from "../../../Features/AllSlice/cartSlice.js";
 
 const AddToCart = () => {
+  const dispatch = useDispatch();
+  const CartItems = useSelector((state) => state);
+  // console.log(cartItem?.cart?.value);
+
+  // Remove cart function
+  const handleRemoveCart = (item) => {
+    dispatch(removeCart(item));
+  };
+
   return (
     <div className="container">
       <div className="my-20">
-        <div className="flex items-center justify-between rounded-md py-4 shadow-lg">
+        <div className="flex items-center justify-between rounded-md py-4 pl-7 shadow-lg">
           <div className="basis-1/4 text-center">
             <h4 className="font-poppins text-base text-text2_black_full">
               Product
@@ -31,34 +42,40 @@ const AddToCart = () => {
         </div>
         {/* cart design */}
         <div className="custom-scrollbar h-[500px] w-full overflow-y-scroll">
-          {[...new Array(20)].map((_) => (
-            <div className="mt-10 flex items-center justify-between rounded-md shadow-lg">
-              <div className="flex basis-1/4 items-center justify-center text-center">
+          {CartItems?.cart?.value?.map((item) => (
+            <div
+              key={item._id}
+              className="mt-10 flex items-center justify-between rounded-md shadow-lg"
+            >
+              <div className="ml-7 flex basis-1/4 items-center justify-start text-center">
                 <div className="flex items-center justify-center">
                   <div className="relative h-[54px] w-[54px] rounded pr-5">
                     <img
-                      src={cartImg}
-                      alt={cartImg}
+                      src={item.image[0]}
+                      alt={item.image[0]}
                       className="h-full w-full object-contain"
                     />
-                    <span className="absolute left-[-10px] top-[5px] flex cursor-pointer items-center justify-center rounded-full bg-red_DB4444 text-center text-whiteColor">
+                    <span
+                      onClick={() => handleRemoveCart(item)}
+                      className="absolute left-[-10px] top-[5px] flex cursor-pointer items-center justify-center rounded-full bg-red_DB4444 text-center text-whiteColor"
+                    >
                       <RxCross2 className="text-[14px]" />
                     </span>
                   </div>
                   <p className="font-poppins text-base text-text2_black_full">
-                    LCD Monitor
+                    {item.name}
                   </p>
                 </div>
               </div>
               <div className="basis-1/4 text-center">
                 <h4 className="font-poppins text-base text-text2_black_full">
-                  $207
+                  {item.price}
                 </h4>
               </div>
               <div className="basis-1/4 text-center">
                 <span className="inline-block rounded border-2 border-[#000] px-2 text-center">
                   <div className="flex font-poppins text-base text-text2_black_full">
-                    <span className="py-1">
+                    <span className="flex items-center justify-center py-1 text-center">
                       <input
                         type="text"
                         id="number"
@@ -67,12 +84,12 @@ const AddToCart = () => {
                         className="w-12 text-center"
                       />
                     </span>
-                    <div>
+                    <div className="flex flex-col items-center">
                       <span>
-                        <MdKeyboardArrowUp />
+                        <MdKeyboardArrowUp className="h-5 w-5 cursor-pointer" />
                       </span>
                       <span>
-                        <MdKeyboardArrowDown />
+                        <MdKeyboardArrowDown className="h-5 w-5 cursor-pointer" />
                       </span>
                     </div>
                   </div>
@@ -80,7 +97,7 @@ const AddToCart = () => {
               </div>
               <div className="basis-1/4 text-center">
                 <h4 className="font-poppins text-base text-text2_black_full">
-                  $2056
+                  {item.price * item.cartQuantity}
                 </h4>
               </div>
             </div>

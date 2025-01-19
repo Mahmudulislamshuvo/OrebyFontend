@@ -21,7 +21,6 @@ const ProductCart = ({ ItemData, isLoading }) => {
   };
 
   const CartItems = useSelector((state) => state?.cart?.value);
-  console.log(CartItems);
 
   return (
     <div>
