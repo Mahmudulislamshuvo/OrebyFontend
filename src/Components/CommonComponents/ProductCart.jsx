@@ -4,7 +4,7 @@ import { FaRegEye } from "react-icons/fa";
 import { calculateBeforePrice } from "../../helpers/MakeDiscount";
 import Star from "./Star";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addtoCart } from "../../Features/AllSlice/cartSlice.js";
 
 const ProductCart = ({ ItemData, isLoading }) => {
@@ -19,6 +19,9 @@ const ProductCart = ({ ItemData, isLoading }) => {
   const HandleAddtoCart = (item) => {
     dispatch(addtoCart(item));
   };
+
+  const CartItems = useSelector((state) => state?.cart?.value);
+  console.log(CartItems);
 
   return (
     <div>

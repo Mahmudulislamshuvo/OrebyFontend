@@ -5,7 +5,7 @@ import { cartSlice } from "./AllSlice/cartSlice.js";
 
 export const store = configureStore({
   reducer: {
-    cart: cartSlice,
+    cart: cartSlice.reducer, //if I don't use .reducer code will not going to work properly
     [productApi.reducerPath]: productApi.reducer,
     [exclusiveApi.reducerPath]: exclusiveApi.reducer,
   },
