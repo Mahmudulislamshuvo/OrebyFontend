@@ -3,7 +3,11 @@ import cartImg from "../../../assets/AddtoCart/CartImg.png";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector, useDispatch } from "react-redux";
-import { removeCart } from "../../../Features/AllSlice/cartSlice.js";
+import {
+  increment,
+  decrement,
+  removeCart,
+} from "../../../Features/AllSlice/cartSlice.js";
 
 const AddToCart = () => {
   const dispatch = useDispatch();
@@ -13,6 +17,14 @@ const AddToCart = () => {
   // Remove cart function
   const handleRemoveCart = (item) => {
     dispatch(removeCart(item));
+  };
+  // handle increment
+  const HandleIncrement = (item) => {
+    dispatch(increment(item));
+  };
+  // handle cart item decrement
+  const HandleDecrement = (item) => {
+    dispatch(decrement(item));
   };
 
   return (
@@ -80,15 +92,15 @@ const AddToCart = () => {
                         type="text"
                         id="number"
                         name="number"
-                        value={1}
+                        value={item.cartQuantity}
                         className="w-12 text-center"
                       />
                     </span>
                     <div className="flex flex-col items-center">
-                      <span>
+                      <span onClick={() => HandleIncrement(item)}>
                         <MdKeyboardArrowUp className="h-5 w-5 cursor-pointer" />
                       </span>
-                      <span>
+                      <span onClick={() => HandleDecrement(item)}>
                         <MdKeyboardArrowDown className="h-5 w-5 cursor-pointer" />
                       </span>
                     </div>

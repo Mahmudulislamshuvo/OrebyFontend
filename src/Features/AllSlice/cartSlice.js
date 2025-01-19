@@ -37,10 +37,31 @@ export const cartSlice = createSlice({
       localStorage.setItem("CartItems", JSON.stringify(state.value));
       ErrorToast(`${action.payload.name} is removed from cart`);
     },
+    increment: (state, action) => {
+      const filterItem = state.value.findIndex((item) => {
+        return item._id === action.payload._id;
+      });
+      if (filterItem >= 0) {
+        state.value[filterItem].cartQuantity += 1;
+      }
+      localStorage.setItem("CartItems", JSON.stringify(state.value));
+      InfoToast(`${action.payload.name} is added to cart again`);
+    },
+    decrement: (state, action) => {
+      const removeQuantityIndex = state.value.findIndex((item) => {
+        return item._id === action.payload._id;
+      });
+      if (state.value[removeQuantityIndex].cartQuantity > 1) {
+        state.value[removeQuantityIndex].cartQuantity -= 1;
+      }
+      ErrorToast(`${action.payload.name} a item removed from cart`);
+      localStorage.setItem("CartItems", JSON.stringify(state.value));
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addtoCart, removeCart } = cartSlice.actions;
+export const { addtoCart, removeCart, increment, decrement } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
