@@ -1,5 +1,4 @@
-import React from "react";
-import cartImg from "../../../assets/AddtoCart/CartImg.png";
+import React, { useEffect } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,12 +6,19 @@ import {
   increment,
   decrement,
   removeCart,
+  getTotal,
 } from "../../../Features/AllSlice/cartSlice.js";
 
 const AddToCart = () => {
   const dispatch = useDispatch();
-  const CartItems = useSelector((state) => state);
-  // console.log(cartItem?.cart?.value);
+  const { value, cartTotalAmount, cartTotalItem } = useSelector(
+    (state) => state?.cart,
+  );
+
+  // real time update subtotal prcing
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [localStorage.getItem("CartItems")]);
 
   // Remove cart function
   const handleRemoveCart = (item) => {
@@ -54,7 +60,7 @@ const AddToCart = () => {
         </div>
         {/* cart design */}
         <div className="custom-scrollbar h-[500px] w-full overflow-y-scroll">
-          {CartItems?.cart?.value?.map((item) => (
+          {value?.map((item) => (
             <div
               key={item._id}
               className="mt-10 flex items-center justify-between rounded-md shadow-lg"
@@ -148,18 +154,18 @@ const AddToCart = () => {
               </h3>
               <div className="flex items-center justify-between border-b-2 border-[rgba(0,0,0,0.5)] py-4">
                 <h5 className="font-poppins text-base text-text2_black_full">
-                  Subtotal:
+                  Discount
                 </h5>
                 <h5 className="font-poppins text-base text-text2_black_full">
-                  $1750
+                  0
                 </h5>
               </div>
               <div className="flex items-center justify-between border-b-2 border-[rgba(0,0,0,0.5)] py-4">
                 <h5 className="font-poppins text-base text-text2_black_full">
-                  Shipping:
+                  Total Item
                 </h5>
                 <h5 className="font-poppins text-base text-text2_black_full">
-                  Free
+                  {cartTotalItem}
                 </h5>
               </div>
               <div className="flex items-center justify-between py-4">
@@ -167,7 +173,7 @@ const AddToCart = () => {
                   Total:
                 </h5>
                 <h5 className="font-poppins text-base text-text2_black_full">
-                  $1750
+                  {cartTotalAmount}
                 </h5>
               </div>
               <div className="flex justify-center">

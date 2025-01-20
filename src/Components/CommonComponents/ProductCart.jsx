@@ -20,7 +20,7 @@ const ProductCart = ({ ItemData, isLoading }) => {
     dispatch(addtoCart(item));
   };
 
-  const CartItems = useSelector((state) => state?.cart?.value);
+  // const CartItems = useSelector((state) => state?.cart?.value);
 
   return (
     <div>

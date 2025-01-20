@@ -75,17 +75,20 @@
   }
   .cartNotification::after {
     position: absolute;
-    top: -10px;
-    right: -8px;
-    content: "0";
-    height: 20px;
-    width: 20px;
+    top: -12px;
+    right: -10px;
+    content: attr(data-cartTotalItem);
+    height: 22px;
+    width: 22px;
     border-radius: 50%;
     background-color: var(--red_DB4444);
     font-size: medium;
     line-height: 150%;
     text-align: center;
     color: var(--whiteColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .slick-dots {
     overflow: hidden;

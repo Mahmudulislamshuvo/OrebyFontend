@@ -6,6 +6,7 @@ import { RiShoppingCart2Line } from "react-icons/ri";
 import { FiShoppingBag, FiUser } from "react-icons/fi";
 import { MdOutlineCancel } from "react-icons/md";
 import { CiLogout, CiStar } from "react-icons/ci";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [account, setaccount] = useState(false);
@@ -15,6 +16,8 @@ const Navbar = () => {
   };
 
   const AccountRef = useRef(null);
+  // get data from redux
+  const { cartTotalItem } = useSelector((state) => state.cart);
 
   // useEffect(() => {
   //   window.addEventListener("click", (event) => {
@@ -25,7 +28,6 @@ const Navbar = () => {
   //     }
   //   });
   // }, [AccountRef]);
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (AccountRef.current && !AccountRef.current.contains(event.target)) {
@@ -112,7 +114,10 @@ const Navbar = () => {
               <span className="cursor-pointer">
                 <GoHeart />
               </span>
-              <span className="cartNotification cursor-pointer">
+              <span
+                data-cartTotalItem={cartTotalItem}
+                className="cartNotification cursor-pointer"
+              >
                 <RiShoppingCart2Line />
               </span>
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-red_DB4444 text-center text-xl text-whitesmoke_F5F5F5">
