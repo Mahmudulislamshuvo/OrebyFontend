@@ -9,6 +9,7 @@ import { SuccessToast } from "../../helpers/Toastify";
 
 const SignUp = () => {
   const [eye, seteye] = useState(false);
+  const [loading, setloading] = useState(false);
   const [signupInfo, setsignupInfo] = useState({
     firstName: "",
     email: "",
@@ -80,6 +81,7 @@ const SignUp = () => {
       alert("Password Mismatched");
       return;
     }
+    setloading(true);
     try {
       const response = await axiosinstance.post("/auth/resgistration", {
         firstName: firstName,
@@ -103,6 +105,7 @@ const SignUp = () => {
         confirmPassword: "",
         agree: null,
       });
+      setloading(false);
       formik.resetForm();
     }
   };
@@ -293,13 +296,20 @@ const SignUp = () => {
                 </div>
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <button
-                    onClick={HandleSignUpBtn}
-                    type="submit"
-                    className="inline-block shrink-0 rounded-md border bg-red_DB4444 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                  >
-                    Create an account
-                  </button>
+                  {loading ? (
+                    <button className="inline-block shrink-0 rounded-md border bg-red_DB4444 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+                      Loading...
+                    </button>
+                  ) : (
+                    <button
+                      onClick={HandleSignUpBtn}
+                      type="submit"
+                      className="inline-block shrink-0 rounded-md border bg-red_DB4444 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                    >
+                      Create an account
+                    </button>
+                  )}
+
                   <p className="mt-4 font-poppins text-sm text-gray-500 sm:mt-0">
                     Already have an account?
                     <Link
