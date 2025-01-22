@@ -21,6 +21,8 @@ const LoginDetails = () => {
     },
   });
 
+  console.log(formik);
+
   return (
     <div>
       <div className="">

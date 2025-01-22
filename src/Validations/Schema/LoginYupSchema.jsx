@@ -18,7 +18,7 @@ export const LoginYupSchema = Yup.object({
 });
 
 export const ContactusYupSchema = Yup.object({
-  name: Yup.string().required("Email Missing"),
+  name: Yup.string().required("Name Missing"),
   email: Yup.string()
     .matches(mailFormat, "Invalid Email format")
     .required("Email Missing!!"),
@@ -26,4 +26,23 @@ export const ContactusYupSchema = Yup.object({
     .matches(BdNumberFormat, "Your Number is Invalid")
     .required("Phone Number Missing!!"),
   text: Yup.string().required("Text required for contact us"),
+});
+
+export const SignUpSchema = Yup.object({
+  firstName: Yup.string().required("Your Name Missing!!"),
+  email: Yup.string()
+    .matches(mailFormat, "Email format Invalid")
+    .required("Email Missing!!"),
+  mobile: Yup.string()
+    .matches(BdNumberFormat, "Mobile number format Invalid")
+    .required("Mobile number Missing!!"),
+  password: Yup.string()
+    .matches(passwordFormat, "Password format invalid")
+    .required("Password Missing!!"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords mismatched")
+    .required("Please confirm your password"),
+  agree: Yup.boolean()
+    .oneOf([true], "You must accept the terms and conditions.")
+    .required("You must accept the terms and conditions."),
 });
