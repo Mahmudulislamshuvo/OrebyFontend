@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { axiosinstance } from "../../helpers/axios";
+import { SuccessToast } from "../../helpers/Toastify";
 
 const Otpverify = () => {
   const params = useParams();
+  const nagivate = useNavigate();
   const [otp, setotp] = useState("");
 
   //   Keypad numbers handle
@@ -15,6 +18,36 @@ const Otpverify = () => {
         return prev + e.toString();
       }
     });
+  };
+  // Handle back btn
+  const HandleBackSpace = () => {
+    setotp((prev) => prev.slice(0, -1));
+  };
+
+  // handle from keyboard values
+  const HandleOtp = (e) => {
+    const value = e.target.value;
+    if (value.length > 5) {
+      console.log("max limit 5");
+    } else {
+      setotp(value);
+    }
+  };
+
+  // handle Submit tik button
+  const handleSubmitSign = async () => {
+    try {
+      const otpVerifyData = await axiosinstance.post("/auth/verify-otp", {
+        email: params.email,
+        Otp: otp,
+      });
+      SuccessToast(otpVerifyData.data.data.message);
+    } catch (error) {
+      console.log("Error from Otp Submit", error);
+    } finally {
+      setotp("");
+      nagivate("/login");
+    }
   };
 
   return (
@@ -38,10 +71,12 @@ const Otpverify = () => {
                 <div className="w-full max-w-sm">
                   <div className="mt-1 flex items-center border-b-2 border-yellow-500 py-2">
                     <input
+                      onChange={HandleOtp}
                       className="mr-3 w-full appearance-none border-none bg-transparent px-2 py-1 text-center text-3xl leading-tight text-white focus:outline-none"
                       type="number"
                       placeholder="Enter Code here"
                       value={otp}
+                      inputmode="decimal"
                     />
                   </div>
                   <div className="font-base my-10 text-center text-xs">
@@ -114,7 +149,7 @@ const Otpverify = () => {
                     <div className="px-2 pt-6">
                       <div className="-mx-2 flex text-3xl">
                         <div className="my-auto w-1/3 cursor-pointer rounded px-2 py-2 hover:bg-green-800">
-                          <div className="px-10 py-2">
+                          <div onClick={HandleBackSpace} className="px-10 py-2">
                             <svg
                               stroke="currentColor"
                               fill="currentColor"
@@ -134,7 +169,10 @@ const Otpverify = () => {
                         >
                           0
                         </div>
-                        <div className="my-auto w-1/3 cursor-pointer rounded px-2 py-2 hover:bg-green-800">
+                        <div
+                          onClick={handleSubmitSign}
+                          className="my-auto w-1/3 cursor-pointer rounded px-2 py-2 hover:bg-green-800"
+                        >
                           <div className="px-10 py-2">
                             <svg
                               stroke="currentColor"

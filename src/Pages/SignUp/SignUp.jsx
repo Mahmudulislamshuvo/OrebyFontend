@@ -75,6 +75,9 @@ const SignUp = () => {
   // };
   // todo: Handle Sign Up Button
   const HandleSignUpBtn = async () => {
+    if (!formik.isValid || !formik.dirty) {
+      return; // Do not proceed if the form is invalid
+    }
     const { firstName, email, mobile, password, confirmPassword, agree } =
       formik.values;
     if (password !== confirmPassword) {
@@ -93,7 +96,6 @@ const SignUp = () => {
       if (response.statusText == "Created") {
         SuccessToast(`${firstName} ${response?.data?.message}`);
       }
-      console.log(response);
     } catch (error) {
       console.log("error from axios", error);
     } finally {
@@ -103,7 +105,6 @@ const SignUp = () => {
         mobile: "",
         password: "",
         confirmPassword: "",
-        agree: null,
       });
       setloading(false);
       formik.resetForm();
@@ -176,7 +177,7 @@ const SignUp = () => {
                     // value={signupInfo.mobile}
                     value={formik.values.mobile}
                     onChange={(handleSignup, formik.handleChange)}
-                    type="text"
+                    type="tel"
                     id="mobile"
                     name="mobile"
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-xl"
