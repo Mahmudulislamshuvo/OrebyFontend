@@ -4,8 +4,12 @@ import { LoginYupSchema } from "../../Validations/Schema/LoginYupSchema";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { axiosinstance } from "../../helpers/axios";
+import { ErrorToast, SuccessToast } from "../../helpers/Toastify.js";
+import { useNavigate } from "react-router-dom";
 
 const LoginDetails = () => {
+  const navigate = useNavigate();
   const [eye, seteye] = useState(false);
 
   const InitialState = {
@@ -16,12 +20,25 @@ const LoginDetails = () => {
   const formik = useFormik({
     initialValues: InitialState,
     validationSchema: LoginYupSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const loginData = await axiosinstance.post("/auth/login", {
+          emailOrphone: values.emailorPhone,
+          password: values.password,
+        });
+        if (loginData.statusText === "OK") {
+          SuccessToast(loginData.data.message);
+          navigate("/");
+        }
+      } catch (error) {
+        console.log("Error from Formik LoginPage", error.response.data.message);
+        ErrorToast(error.response.data.message);
+      } finally {
+        // Clear form data
+        formik.resetForm();
+      }
     },
   });
-
-  console.log(formik);
 
   return (
     <div>
