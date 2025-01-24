@@ -3,6 +3,8 @@ import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { useFormik } from "formik";
 import { ContactusYupSchema } from "../../../Validations/Schema/LoginYupSchema";
+import { axiosinstance } from "../../../helpers/axios";
+import { SuccessToast } from "../../../helpers/Toastify";
 
 const ContactUsBy = () => {
   // Formik things
@@ -11,11 +13,18 @@ const ContactUsBy = () => {
       email: "",
       name: "",
       phone: "",
-      text: "",
+      message: "",
     },
     validationSchema: ContactusYupSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values, action) => {
+      try {
+        const response = await axiosinstance.post("/contact", values);
+        SuccessToast(response.data.message);
+      } catch (error) {
+        console.log("error from Contact us submittion", error);
+      } finally {
+        action.resetForm();
+      }
     },
   });
   // Formik things end
@@ -110,14 +119,14 @@ const ContactUsBy = () => {
           </div>
           <textarea
             placeholder="Your Message"
-            id="text"
-            name="text"
+            id="message"
+            name="message"
             className="mt-[45px] min-h-[50%] w-[93.4%] overflow-hidden rounded bg-whitesmoke_F5F5F5 p-4 text-start font-poppins"
-            value={formik.values.text}
+            value={formik.values.message}
             onChange={formik.handleChange}
           />
-          {formik.errors.text && formik.touched.text ? (
-            <div className="text-red-500">{formik.errors.text}</div>
+          {formik.errors.message && formik.touched.message ? (
+            <div className="text-red-500">{formik.errors.message}</div>
           ) : null}
           <form onSubmit={formik.handleSubmit}>
             <div className="mr-[6.6%] mt-8 text-end">

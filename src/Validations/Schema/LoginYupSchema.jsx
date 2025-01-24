@@ -25,7 +25,7 @@ export const ContactusYupSchema = Yup.object({
   phone: Yup.string()
     .matches(BdNumberFormat, "Your Number is Invalid")
     .required("Phone Number Missing!!"),
-  text: Yup.string().required("Text required for contact us"),
+  message: Yup.string().required("Text required for contact us"),
 });
 
 export const SignUpSchema = Yup.object({
