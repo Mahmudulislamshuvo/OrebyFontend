@@ -114,12 +114,13 @@ const Navbar = () => {
               <span className="cursor-pointer">
                 <GoHeart />
               </span>
-              <span
+              <Link
+                to={"/addtocart"}
                 data-cartTotalItem={cartTotalItem}
                 className="cartNotification cursor-pointer"
               >
                 <RiShoppingCart2Line />
-              </span>
+              </Link>
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-red_DB4444 text-center text-xl text-whitesmoke_F5F5F5">
                 <span
                   onClick={AccountDetails}

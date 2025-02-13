@@ -6,6 +6,7 @@ export const exclusiveApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_DOMAIN_NAME}${import.meta.env.VITE_BASE_API}`,
   }),
+  credentials: "include",
   endpoints: (builder) => ({
     GetallBanner: builder.query({
       query: () => `/banner`,
@@ -28,6 +29,13 @@ export const exclusiveApi = createApi({
     GetSingleCategory: builder.query({
       query: (id) => `/category/${id}`,
     }),
+    Addtocart: builder.mutation({
+      query: (productid) => {
+        url: "/addtocart";
+        method: "POST";
+        body: productid;
+      },
+    }),
   }),
 });
 
@@ -39,4 +47,5 @@ export const {
   useGetAllProductsfromDbQuery,
   useGetSingleProductQuery,
   useGetSingleCategoryQuery,
+  useAddtocartMutation,
 } = exclusiveApi;
