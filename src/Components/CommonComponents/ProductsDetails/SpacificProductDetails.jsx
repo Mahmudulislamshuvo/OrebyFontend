@@ -4,9 +4,16 @@ import PlusMinus from "./PlusMinus";
 import { GoHeart } from "react-icons/go";
 import { TbRefresh, TbTruckDelivery } from "react-icons/tb";
 import Star from "../Star";
+import { useAddtocartMutation } from "../../../Features/Api/exclusiveApi";
+import { useParams } from "react-router-dom";
+import { SuccessToast } from "../../../helpers/Toastify";
 
 const SpacificProductDetails = ({ ProductDetailsData }) => {
-  // console.log(ProductDetailsData);
+  const [btnloading, setbtnloading] = useState(false);
+  const { id } = useParams();
+
+  // call muations
+  const [Addtocart, { isLoading, data, errors }] = useAddtocartMutation();
 
   const [activeSizeId, setActiveSizeId] = useState(null);
 
@@ -35,6 +42,30 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
       size: "XL",
     },
   ];
+
+  // Handle add to cart with response check
+  const handleAddtocart = async () => {
+    try {
+      setbtnloading(true);
+      const response = await Addtocart({
+        product: id,
+        quantity: 1,
+      });
+
+      if (response) {
+        SuccessToast(
+          response?.error
+            ? response?.error?.data.message
+            : response?.data?.message,
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setbtnloading(false);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -107,8 +138,15 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
         {/* buy now buton */}
         <div className="mt-6 flex items-center">
           <PlusMinus />
-          <button className="ml-4 rounded-sm bg-red_DB4444 px-12 py-3 font-poppins text-base font-medium text-whiteColor">
-            Buy Now
+          <button
+            onClick={handleAddtocart}
+            className={
+              btnloading === true
+                ? "ml-4 rounded-sm bg-green-400 px-12 py-3 font-poppins text-base font-medium text-whiteColor"
+                : "ml-4 rounded-sm bg-red_DB4444 px-12 py-3 font-poppins text-base font-medium text-whiteColor"
+            }
+          >
+            {btnloading === true ? "Loading...." : "Add to Cart"}
           </button>
           <div className="ml-5 rounded border-2 border-[rgba(0,0,0,0.3)] p-[7px]">
             <GoHeart className="h-8 w-8" />

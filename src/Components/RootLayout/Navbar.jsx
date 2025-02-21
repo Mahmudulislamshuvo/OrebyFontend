@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { LuSearch } from "react-icons/lu";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { FiShoppingBag, FiUser } from "react-icons/fi";
 import { MdOutlineCancel } from "react-icons/md";
 import { CiLogout, CiStar } from "react-icons/ci";
 import { useSelector } from "react-redux";
+import { useLogoutMutation } from "../../Features/Api/exclusiveApi";
 
 const Navbar = () => {
   const [account, setaccount] = useState(false);
+  const navigate = useNavigate();
+  const [logout] = useLogoutMutation();
 
   const AccountDetails = () => {
     setaccount(!account);
@@ -40,6 +43,21 @@ const Navbar = () => {
       window.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  // Function to clear the cookie manually
+  const deleteCookie = (name) => {
+    document.cookie = `${name}=; Max-Age=-1`;
+  };
+
+  // logout handle
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login");
+    } catch (error) {
+      console.log("Logout failed", error);
+    }
+  };
 
   const NavMenu = [
     {
@@ -164,7 +182,12 @@ const Navbar = () => {
                         <span className="pr-4 text-[25px]">
                           <CiLogout />
                         </span>
-                        <h4 className="font-poppins text-[14px]">Logout</h4>
+                        <h4
+                          onClick={handleLogout}
+                          className="font-poppins text-[14px]"
+                        >
+                          Logout
+                        </h4>
                       </div>
                     </div>
                   </div>

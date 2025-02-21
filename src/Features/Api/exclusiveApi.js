@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BiUnlink } from "react-icons/bi";
 
 export const exclusiveApi = createApi({
   reducerPath: "exclusive",
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_DOMAIN_NAME}${import.meta.env.VITE_BASE_API}`,
+    credentials: "include",
   }),
-  credentials: "include",
+
   endpoints: (builder) => ({
     GetallBanner: builder.query({
       query: () => `/banner`,
@@ -30,11 +30,21 @@ export const exclusiveApi = createApi({
       query: (id) => `/category/${id}`,
     }),
     Addtocart: builder.mutation({
-      query: (productid) => {
-        url: "/addtocart";
-        method: "POST";
-        body: productid;
-      },
+      query: (productid) => ({
+        url: "/addtocart",
+        method: "POST",
+        body: productid,
+      }),
+    }),
+    GetusercartItem: builder.query({
+      query: () => "/getuseritem",
+    }),
+    Logout: builder.mutation({
+      query: () => ({
+        url: "/auth/logout",
+        method: "GET",
+        credentials: "include",
+      }),
     }),
   }),
 });
@@ -48,4 +58,6 @@ export const {
   useGetSingleProductQuery,
   useGetSingleCategoryQuery,
   useAddtocartMutation,
+  useGetusercartItemQuery,
+  useLogoutMutation,
 } = exclusiveApi;

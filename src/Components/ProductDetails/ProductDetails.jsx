@@ -6,7 +6,7 @@ import ProductDetailsSkeleton from "../CommonComponents/Skeletons/ProductDetails
 import Heading from "../CommonComponents/Heading";
 import ProductCart from "../CommonComponents/ProductCart";
 import Slider from "react-slick";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   useGetSingleCategoryQuery,
   useGetSingleProductQuery,

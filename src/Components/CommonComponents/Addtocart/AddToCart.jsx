@@ -8,8 +8,13 @@ import {
   removeCart,
   getTotal,
 } from "../../../Features/AllSlice/cartSlice.js";
+import { useGetusercartItemQuery } from "../../../Features/Api/exclusiveApi.js";
 
 const AddToCart = () => {
+  const { isLoading, data, isError } = useGetusercartItemQuery();
+
+  console.log(data);
+
   const dispatch = useDispatch();
   const { value, cartTotalAmount, cartTotalItem } = useSelector(
     (state) => state?.cart,
