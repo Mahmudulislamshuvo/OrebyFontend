@@ -8,16 +8,19 @@ import {
   removeCart,
   getTotal,
 } from "../../../Features/AllSlice/cartSlice.js";
-import { useGetusercartItemQuery } from "../../../Features/Api/exclusiveApi.js";
+import {
+  useGetusercartItemQuery,
+  useRemoveCartItemMutation,
+} from "../../../Features/Api/exclusiveApi.js";
+import { SuccessToast } from "../../../helpers/Toastify.js";
 
 const AddToCart = () => {
-  const { isLoading, data, isError } = useGetusercartItemQuery();
+  const { isLoading, data, isError, refetch } = useGetusercartItemQuery();
+  const [removecart] = useRemoveCartItemMutation();
 
   const AllcartItem = data?.data?.AllcartItem;
   const totalAmount = data?.data?.totalAmount;
   const totalQuantity = data?.data?.totalQuantity;
-
-  console.log(AllcartItem);
 
   const dispatch = useDispatch();
   const { value, cartTotalAmount, cartTotalItem } = useSelector(
@@ -29,10 +32,19 @@ const AddToCart = () => {
     dispatch(getTotal());
   }, [localStorage.getItem("CartItems")]);
 
-  // Remove cart function
-  const handleRemoveCart = (item) => {
-    dispatch(removeCart(item));
+  // remove cart Iten from CartPage
+  const handleRemoveCart = async (item) => {
+    try {
+      const response = await removecart(item._id);
+      if (response) {
+        SuccessToast(response?.data?.data?.product?.name);
+        refetch();
+      }
+    } catch (error) {
+      console.log("error from handleRemoveCart", error);
+    }
   };
+
   // handle increment
   const HandleIncrement = (item) => {
     dispatch(increment(item));
@@ -69,71 +81,66 @@ const AddToCart = () => {
         </div>
         {/* cart design */}
         <div className="custom-scrollbar h-[500px] w-full overflow-y-scroll">
-          {AllcartItem?.map(
-            (item) => (
-              console.log(item),
-              (
-                <div
-                  key={item._id}
-                  className="mt-10 flex items-center justify-between rounded-md shadow-lg"
-                >
-                  <div className="ml-7 flex basis-1/4 items-center justify-start text-center">
-                    <div className="flex items-center justify-center">
-                      <div className="relative h-[54px] w-[54px] rounded pr-5">
-                        <img
-                          src={item.product.image[0]}
-                          alt={item.product.image[0]}
-                          className="h-full w-full object-contain"
-                        />
-                        <span
-                          onClick={() => handleRemoveCart(item)}
-                          className="absolute left-[-10px] top-[5px] flex cursor-pointer items-center justify-center rounded-full bg-red_DB4444 text-center text-whiteColor"
-                        >
-                          <RxCross2 className="text-[14px]" />
-                        </span>
-                      </div>
-                      <p className="font-poppins text-base text-text2_black_full">
-                        {item.product.name}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="basis-1/4 text-center">
-                    <h4 className="font-poppins text-base text-text2_black_full">
-                      {item.product.price}
-                    </h4>
-                  </div>
-                  <div className="basis-1/4 text-center">
-                    <span className="inline-block rounded border-2 border-[#000] px-2 text-center">
-                      <div className="flex font-poppins text-base text-text2_black_full">
-                        <span className="flex items-center justify-center py-1 text-center">
-                          <input
-                            type="text"
-                            id="number"
-                            name="number"
-                            value={item.quantity}
-                            className="w-12 text-center"
-                          />
-                        </span>
-                        <div className="flex flex-col items-center">
-                          <span onClick={() => HandleIncrement(item)}>
-                            <MdKeyboardArrowUp className="h-5 w-5 cursor-pointer" />
-                          </span>
-                          <span onClick={() => HandleDecrement(item)}>
-                            <MdKeyboardArrowDown className="h-5 w-5 cursor-pointer" />
-                          </span>
-                        </div>
-                      </div>
+          {AllcartItem?.map((item) => (
+            <div
+              key={item._id}
+              className="mt-10 flex items-center justify-between rounded-md shadow-lg"
+            >
+              <div className="ml-7 flex basis-1/4 items-center justify-start text-center">
+                <div className="flex items-center justify-center">
+                  <div className="relative h-[54px] w-[54px] rounded pr-5">
+                    <img
+                      src={item.product.image[0]}
+                      alt={item.product.image[0]}
+                      className="h-full w-full object-contain"
+                    />
+                    <span
+                      onClick={() => handleRemoveCart(item)}
+                      className="absolute left-[-10px] top-[5px] flex cursor-pointer items-center justify-center rounded-full bg-red_DB4444 text-center text-whiteColor"
+                    >
+                      <RxCross2 className="text-[14px]" />
                     </span>
                   </div>
-                  <div className="basis-1/4 text-center">
-                    <h4 className="font-poppins text-base text-text2_black_full">
-                      {item.product.price * item.quantity}
-                    </h4>
-                  </div>
+                  <p className="font-poppins text-base text-text2_black_full">
+                    {item.product.name}
+                  </p>
                 </div>
-              )
-            ),
-          )}
+              </div>
+              <div className="basis-1/4 text-center">
+                <h4 className="font-poppins text-base text-text2_black_full">
+                  {item.product.price}
+                </h4>
+              </div>
+              <div className="basis-1/4 text-center">
+                <span className="inline-block rounded border-2 border-[#000] px-2 text-center">
+                  <div className="flex font-poppins text-base text-text2_black_full">
+                    <span className="flex items-center justify-center py-1 text-center">
+                      <input
+                        type="text"
+                        id="number"
+                        name="number"
+                        value={item.quantity}
+                        className="w-12 text-center"
+                      />
+                    </span>
+                    <div className="flex flex-col items-center">
+                      <span onClick={() => HandleIncrement(item)}>
+                        <MdKeyboardArrowUp className="h-5 w-5 cursor-pointer" />
+                      </span>
+                      <span onClick={() => HandleDecrement(item)}>
+                        <MdKeyboardArrowDown className="h-5 w-5 cursor-pointer" />
+                      </span>
+                    </div>
+                  </div>
+                </span>
+              </div>
+              <div className="basis-1/4 text-center">
+                <h4 className="font-poppins text-base text-text2_black_full">
+                  {item.product.price * item.quantity}
+                </h4>
+              </div>
+            </div>
+          ))}
         </div>
         {/* cart design */}
         {/* buttons */}
