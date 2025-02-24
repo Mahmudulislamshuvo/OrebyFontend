@@ -19,6 +19,8 @@ import SignUp from "./Pages/SignUp/SignUp";
 import ErrorPage from "./Pages/ErrorPage/EroorPage";
 import Otpverify from "./Pages/OtpVerifyPage/Otpverify";
 import Paymentfailed from "./Pages/Paymentfailed/Paymentfailed";
+import PaymentSuccess from "./Pages/PaymentSuccess/PaymentSuccess";
+import PaymentCancelled from "./Pages/PaymentCancel/PaymentCancel";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +43,8 @@ const router = createBrowserRouter(
         <Route path="/otp-verify/:email" element={<Otpverify />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>
         <Route path="/payment/failed" element={<Paymentfailed />}></Route>
+        <Route path="/payment/success" element={<PaymentSuccess />}></Route>
+        <Route path="/payment/canceled" element={<PaymentCancelled />}></Route>
       </Route>
     </Route>,
   ),
