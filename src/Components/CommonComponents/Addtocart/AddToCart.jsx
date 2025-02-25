@@ -9,6 +9,7 @@ import {
   getTotal,
 } from "../../../Features/AllSlice/cartSlice.js";
 import {
+  useCartItemIncrementMutation,
   useGetusercartItemQuery,
   useRemoveCartItemMutation,
 } from "../../../Features/Api/exclusiveApi.js";
@@ -22,15 +23,17 @@ const AddToCart = () => {
   const totalAmount = data?.data?.totalAmount;
   const totalQuantity = data?.data?.totalQuantity;
 
-  const dispatch = useDispatch();
-  const { value, cartTotalAmount, cartTotalItem } = useSelector(
-    (state) => state?.cart,
-  );
+  // todo: There was without api Data from Local storage
+  // const dispatch = useDispatch();
+  // const { value, cartTotalAmount, cartTotalItem } = useSelector(
+  //   (state) => state?.cart,
+  // );
 
-  // real time update subtotal prcing
-  useEffect(() => {
-    dispatch(getTotal());
-  }, [localStorage.getItem("CartItems")]);
+  // // real time update subtotal prcing
+  // useEffect(() => {
+  //   dispatch(getTotal());
+  // }, [localStorage.getItem("CartItems")]);
+  // todo: There was without api Data from Local storage end
 
   // remove cart Iten from CartPage
   const handleRemoveCart = async (item) => {
@@ -40,6 +43,9 @@ const AddToCart = () => {
         SuccessToast(response?.data?.data?.product?.name);
         refetch();
       }
+      console.log(response);
+
+      const cartItemId = response?.data?.cartItem?._id;
     } catch (error) {
       console.log("error from handleRemoveCart", error);
     }

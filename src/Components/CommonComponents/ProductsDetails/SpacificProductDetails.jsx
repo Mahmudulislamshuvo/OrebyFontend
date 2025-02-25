@@ -11,6 +11,7 @@ import { SuccessToast } from "../../../helpers/Toastify";
 const SpacificProductDetails = ({ ProductDetailsData }) => {
   const [btnloading, setbtnloading] = useState(false);
   const { id } = useParams();
+  console.log(id);
 
   // call muations
   const [Addtocart, { isLoading, data, errors }] = useAddtocartMutation();
@@ -63,6 +64,17 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
       console.error("Error:", error);
     } finally {
       setbtnloading(false);
+    }
+  };
+
+  // Handle quantity Increment
+  const HandleIncrement = async (cartId) => {
+    console.log(cartId);
+
+    try {
+      const response = await incrementCartItem(cartId);
+    } catch (error) {
+      console.log("Error from HandleIncrement", error);
     }
   };
 
@@ -137,7 +149,7 @@ const SpacificProductDetails = ({ ProductDetailsData }) => {
         </div>
         {/* buy now buton */}
         <div className="mt-6 flex items-center">
-          <PlusMinus />
+          <PlusMinus cartId={id} />
           <button
             onClick={handleAddtocart}
             className={

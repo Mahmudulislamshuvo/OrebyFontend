@@ -7,20 +7,25 @@ import { FiShoppingBag, FiUser } from "react-icons/fi";
 import { MdOutlineCancel } from "react-icons/md";
 import { CiLogout, CiStar } from "react-icons/ci";
 import { useSelector } from "react-redux";
-import { useLogoutMutation } from "../../Features/Api/exclusiveApi";
+import {
+  useGetusercartItemQuery,
+  useLogoutMutation,
+} from "../../Features/Api/exclusiveApi";
 
 const Navbar = () => {
   const [account, setaccount] = useState(false);
   const navigate = useNavigate();
   const [logout] = useLogoutMutation();
+  const { isLoading, data, iserror } = useGetusercartItemQuery();
+  const UserCartItems = data?.data?.AllcartItem;
 
   const AccountDetails = () => {
     setaccount(!account);
   };
 
   const AccountRef = useRef(null);
-  // get data from redux
-  const { cartTotalItem } = useSelector((state) => state.cart);
+  // // get data from redux
+  // const { cartTotalItem } = useSelector((state) => state.cart);
 
   // useEffect(() => {
   //   window.addEventListener("click", (event) => {
@@ -132,13 +137,21 @@ const Navbar = () => {
               <span className="cursor-pointer">
                 <GoHeart />
               </span>
-              <Link
+              {/* <Link
                 to={"/addtocart"}
                 data-cartTotalItem={cartTotalItem}
                 className="cartNotification cursor-pointer"
               >
                 <RiShoppingCart2Line />
+              </Link> */}
+              <Link
+                to={"/addtocart"}
+                data-cartTotalItem={isLoading ? "0" : UserCartItems?.length}
+                className="cartNotification relative cursor-pointer"
+              >
+                <RiShoppingCart2Line />
               </Link>
+
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-red_DB4444 text-center text-xl text-whitesmoke_F5F5F5">
                 <span
                   onClick={AccountDetails}
