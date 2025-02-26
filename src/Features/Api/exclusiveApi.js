@@ -57,20 +57,18 @@ export const exclusiveApi = createApi({
       invalidatesTags: ["cart"],
     }),
     CartItemIncrement: builder.mutation({
-      query: (cartid) => {
-        return {
-          url: `/increment/${cartid}`,
-          method: "POST",
-        };
-      },
+      query: (cartid) => ({
+        url: `/increment/${cartid}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["cart"],
     }),
     CartItemDecrement: builder.mutation({
-      query: (cartid) => {
-        return {
-          url: `/decrement/${cartid}`,
-          method: "POST",
-        };
-      },
+      query: (cartid) => ({
+        url: `/decrement/${cartid}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["cart"],
     }),
   }),
 });

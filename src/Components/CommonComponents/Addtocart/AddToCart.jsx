@@ -1,23 +1,19 @@
 import React, { useEffect } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
-import { useSelector, useDispatch } from "react-redux";
 import {
-  increment,
-  decrement,
-  removeCart,
-  getTotal,
-} from "../../../Features/AllSlice/cartSlice.js";
-import {
+  useCartItemDecrementMutation,
   useCartItemIncrementMutation,
   useGetusercartItemQuery,
   useRemoveCartItemMutation,
 } from "../../../Features/Api/exclusiveApi.js";
-import { SuccessToast } from "../../../helpers/Toastify.js";
+import { InfoToast, SuccessToast } from "../../../helpers/Toastify.js";
 
 const AddToCart = () => {
   const { isLoading, data, isError, refetch } = useGetusercartItemQuery();
   const [removecart] = useRemoveCartItemMutation();
+  const [CartItemIncrement] = useCartItemIncrementMutation();
+  const [CartItemDecrement] = useCartItemDecrementMutation();
 
   const AllcartItem = data?.data?.AllcartItem;
   const totalAmount = data?.data?.totalAmount;
@@ -33,31 +29,55 @@ const AddToCart = () => {
   // useEffect(() => {
   //   dispatch(getTotal());
   // }, [localStorage.getItem("CartItems")]);
+
+  // // handle increment
+  // const HandleIncrement = (item) => {
+  //   dispatch(increment(item));
+  // };
+  // // handle cart item decrement
+  // const HandleDecrement = (item) => {
+  //   dispatch(decrement(item));
+  // };
   // todo: There was without api Data from Local storage end
 
   // remove cart Iten from CartPage
   const handleRemoveCart = async (item) => {
     try {
       const response = await removecart(item._id);
-      if (response) {
+      if (response.data) {
         SuccessToast(response?.data?.data?.product?.name);
         refetch();
       }
-      console.log(response);
-
       const cartItemId = response?.data?.cartItem?._id;
     } catch (error) {
       console.log("error from handleRemoveCart", error);
     }
   };
 
-  // handle increment
-  const HandleIncrement = (item) => {
-    dispatch(increment(item));
+  // Increment item in cart
+  const handleIncrement = async (item) => {
+    try {
+      // Pass the correct cartId to the API
+      const response = await CartItemIncrement(item.product._id).unwrap();
+      if (response?.data) {
+        SuccessToast("Quantity increased");
+      }
+    } catch (error) {
+      console.log("Error in incrementing cart item", error);
+    }
   };
-  // handle cart item decrement
-  const HandleDecrement = (item) => {
-    dispatch(decrement(item));
+
+  // Handle Decremnet
+  const HandleDecrement = async (item) => {
+    try {
+      const response = await CartItemDecrement(item.product._id).unwrap();
+      if (response?.data) {
+        SuccessToast("Quantity Decrese");
+      }
+    } catch (error) {
+      console.log("Error from HandleDecrement", error);
+      InfoToast(error.data.statusCode);
+    }
   };
 
   return (
@@ -130,7 +150,7 @@ const AddToCart = () => {
                       />
                     </span>
                     <div className="flex flex-col items-center">
-                      <span onClick={() => HandleIncrement(item)}>
+                      <span onClick={() => handleIncrement(item)}>
                         <MdKeyboardArrowUp className="h-5 w-5 cursor-pointer" />
                       </span>
                       <span onClick={() => HandleDecrement(item)}>
