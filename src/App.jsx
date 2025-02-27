@@ -21,6 +21,7 @@ import Otpverify from "./Pages/OtpVerifyPage/Otpverify";
 import Paymentfailed from "./Pages/Paymentfailed/Paymentfailed";
 import PaymentSuccess from "./Pages/PaymentSuccess/PaymentSuccess";
 import PaymentCancelled from "./Pages/PaymentCancel/PaymentCancel";
+import OrderPage from "./Pages/OrderPage/OrderPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
         <Route path="/payment/failed" element={<Paymentfailed />}></Route>
         <Route path="/payment/success" element={<PaymentSuccess />}></Route>
         <Route path="/payment/canceled" element={<PaymentCancelled />}></Route>
+        <Route path="/order" element={<OrderPage />}></Route>
       </Route>
     </Route>,
   ),
