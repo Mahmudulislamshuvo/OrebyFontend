@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SuccessToast } from "../../../helpers/Toastify";
 import { useGetusercartItemQuery } from "../../../Features/Api/exclusiveApi";
+import { axiosinstance } from "../../../helpers/axios";
 
 const Checkout = () => {
   const { isLoading, data, iserror } = useGetusercartItemQuery();
@@ -53,7 +54,7 @@ const Checkout = () => {
     address1: "123 Main St",
     address2: "Apt 4B",
     town: "Springfield",
-    district: "Central",
+    division: "Central",
     postalcode: "12345",
     country: "USA",
     payementmethod: "online",
@@ -87,9 +88,27 @@ const Checkout = () => {
   const placeOrder = async () => {
     try {
       setloading(true);
-      // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      SuccessToast("Your order Placed Successfully!");
+      const response = await axiosinstance.put(
+        "/order",
+        {
+          customerinfo: {
+            address1: userinfo.address1,
+            address2: userinfo.address2,
+            city: userinfo.town,
+            division: userinfo.division,
+            postCode: userinfo.postalcode,
+          },
+          paymentinfo: {
+            paymentMethod: "online",
+          },
+        },
+        { withCredentials: "includes" },
+      );
+      if (response?.data?.data?.GatewayPageURL) {
+        window.location.href = response.data.data.GatewayPageURL;
+      } else {
+        SuccessToast("Your order Placed Successfully!");
+      }
     } catch (error) {
       console.log("error from place order", error);
     } finally {

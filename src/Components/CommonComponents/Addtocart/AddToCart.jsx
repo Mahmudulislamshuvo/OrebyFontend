@@ -122,7 +122,7 @@ const AddToCart = () => {
                 Let's fill it up with amazing products!
               </p>
               <Link
-                to="/products"
+                to="/productdetails"
                 className="hover:bg-red_c93228 flex items-center rounded-lg bg-red_DB4444 px-8 py-3 font-poppins text-white transition-all hover:scale-105"
               >
                 <FiShoppingBag className="mr-2" />
@@ -206,7 +206,7 @@ const AddToCart = () => {
           <>
             <div className="mt-10 flex items-center justify-between">
               <Link
-                to="/products"
+                to="/productdetails"
                 className="rounded border-2 border-[rgba(0,0,0,0.5)] px-12 py-4 font-poppins text-base font-medium text-text2_black_full transition-all hover:border-none hover:bg-red_DB4444 hover:text-whiteColor"
               >
                 Continue Shopping
