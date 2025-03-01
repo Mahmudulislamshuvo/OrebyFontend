@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SuccessToast } from "../../../helpers/Toastify";
+import { useGetusercartItemQuery } from "../../../Features/Api/exclusiveApi";
 
 const Checkout = () => {
+  const { isLoading, data, iserror } = useGetusercartItemQuery();
+  const CartItemUserDetails = data?.data?.AllcartItem[0]?.user;
+  // get data from Local storage
+  const userinfoFromLocal = JSON.parse(localStorage.getItem("user"));
+
   // Dummy cart data
   const dummyCart = {
     cartITem: [
@@ -41,16 +47,16 @@ const Checkout = () => {
 
   // Dummy user data
   const [userinfo, setUserinfo] = useState({
-    firstName: "John Doe",
-    email: "john@example.com",
-    mobile: "123-456-7890",
+    firstName: userinfoFromLocal.firstName,
+    email: userinfoFromLocal.email,
+    mobile: userinfoFromLocal.mobile,
     address1: "123 Main St",
     address2: "Apt 4B",
     town: "Springfield",
     district: "Central",
     postalcode: "12345",
     country: "USA",
-    payementmethod: "",
+    payementmethod: "online",
   });
 
   const handleChange = (e) => {
@@ -60,6 +66,8 @@ const Checkout = () => {
       [name]: value,
     });
   };
+
+  console.log(userinfo);
 
   const handleOnlinePayment = () => {
     setUserinfo({
@@ -86,6 +94,16 @@ const Checkout = () => {
       console.log("error from place order", error);
     } finally {
       setloading(false);
+    }
+  };
+
+  // on focus clear input values
+  const handleFocus = (e) => {
+    const { name, value } = e.target;
+    if (name !== "firstName" || "email" || "mobile") {
+      return;
+    } else {
+      value = "";
     }
   };
 
@@ -121,6 +139,7 @@ const Checkout = () => {
                           name={item}
                           value={userinfo[item]}
                           onChange={handleChange}
+                          onFocus={(e) => handleFocus(e)}
                           placeholder={item}
                           className="w-full border-b bg-white px-2 py-3 pb-2 text-sm text-gray-800 outline-none focus:border-blue-600 focus:bg-gray-200"
                         />
@@ -141,7 +160,7 @@ const Checkout = () => {
                     ))}
                   </div>
                 </div>
-
+                {/* payment */}
                 <div className="mt-16">
                   <h2 className="text-xl font-bold text-gray-800">
                     Payment method
@@ -197,7 +216,7 @@ const Checkout = () => {
                     </div>
                   </div>
                 </div>
-
+                {/* payment end */}
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Link
                     to={"/cart"}
@@ -227,7 +246,7 @@ const Checkout = () => {
                   </h2>
 
                   <div className="mt-8 space-y-6">
-                    {dummyCart.cartITem.map((item, index) => (
+                    {data?.data?.AllcartItem?.map((item, index) => (
                       <div key={index} className="flex gap-4">
                         <div className="flex h-[100px] w-[124px] shrink-0 items-center justify-center rounded-lg bg-gray-200 p-4">
                           <img

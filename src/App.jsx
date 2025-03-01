@@ -46,7 +46,7 @@ const router = createBrowserRouter(
         <Route path="/payment/failed" element={<Paymentfailed />}></Route>
         <Route path="/payment/success" element={<PaymentSuccess />}></Route>
         <Route path="/payment/canceled" element={<PaymentCancelled />}></Route>
-        <Route path="/order" element={<OrderPage />}></Route>
+        <Route path="/checkout" element={<OrderPage />}></Route>
       </Route>
     </Route>,
   ),

@@ -6,8 +6,11 @@ import Star from "./Star";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addtoCart } from "../../Features/AllSlice/cartSlice.js";
+import { useAddtocartMutation } from "../../Features/Api/exclusiveApi.js";
+import { SuccessToast } from "../../helpers/Toastify.js";
 
 const ProductCart = ({ ItemData, isLoading }) => {
+  const [Addtocart, { data }] = useAddtocartMutation();
   const dispatch = useDispatch();
   // Before price calculate another way to use
   // const runningPrice = ItemData.price;
@@ -16,8 +19,16 @@ const ProductCart = ({ ItemData, isLoading }) => {
   // In jsx
   // {`Before Price: $${beforePrice.toFixed(2)}`}
 
-  const HandleAddtoCart = (item) => {
-    dispatch(addtoCart(item));
+  const HandleAddtoCart = async ({ _id }) => {
+    try {
+      const response = await Addtocart({ product: _id, quantity: 1 });
+      console.log(response);
+      if (response?.data) {
+        SuccessToast(`Add to cart Succusful`);
+      }
+    } catch (error) {
+      console.log("Error from HandleAddtoCart ProductCart.jsx");
+    }
   };
 
   // const CartItems = useSelector((state) => state?.cart?.value);
