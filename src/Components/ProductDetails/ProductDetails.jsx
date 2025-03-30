@@ -23,7 +23,9 @@ const ProductDetails = () => {
   };
   // todo: fatch data from api
   const params = useParams();
-  const { data, error, isLoading } = useGetSingleProductQuery(params.id);
+  const { id } = params;
+
+  const { data, error, isLoading } = useGetSingleProductQuery(id);
 
   const ProductByCategory = useGetSingleCategoryQuery(data?.data.category._id);
   const relatedProducts = ProductByCategory?.data?.data?.product || [];

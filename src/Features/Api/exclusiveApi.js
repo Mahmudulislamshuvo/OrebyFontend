@@ -70,10 +70,14 @@ export const exclusiveApi = createApi({
       }),
       invalidatesTags: ["cart"],
     }),
+    GetAllProduct: builder.query({
+      query: () => "/product",
+    }),
   }),
 });
 
 export const {
+  useGetAllProductQuery,
   useGetallBannerQuery,
   useGetAllProductDetailsQuery,
   useGetAllCategoryQuery,

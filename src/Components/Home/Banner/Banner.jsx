@@ -86,7 +86,7 @@ const Banner = () => {
               <BannerSkeliton />
             ) : (
               <Slider {...settings}>
-                {data?.success.map((BannerImg, index) => (
+                {data?.data?.map((BannerImg, index) => (
                   <div
                     key={index}
                     className="h-[352px] w-[892px] pl-11 pt-10 outline-none focus:outline-none"

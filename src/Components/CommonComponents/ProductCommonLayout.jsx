@@ -11,7 +11,7 @@ const ProductCommonLayout = ({
   timeofOffer,
   timeStamp,
   SlidshowNumber = 4,
-  ComponentData = [],
+  ComponentData,
   isLoading = false,
   IsButton,
   autoplay = false,
@@ -54,12 +54,12 @@ const ProductCommonLayout = ({
           <Slider ref={sliderRef} {...settings}>
             {isLoading
               ? [...new Array(6)].map((_, index) => (
-                  <div>
+                  <div key={index}>
                     <ProductCartSkeleton />
                   </div>
                 ))
-              : ComponentData.map((item, index) => (
-                  <div>
+              : ComponentData?.map((item, index) => (
+                  <div key={index}>
                     <ProductCart ItemData={item} />
                   </div>
                 ))}

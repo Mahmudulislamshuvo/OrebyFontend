@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCommonLayout from "../../CommonComponents/ProductCommonLayout";
 import ProductCart from "../../CommonComponents/ProductCart";
-import { useBestSellingProductQuery } from "../../../Features/Api/PtoductApi";
 import { useGetBestSellingProductQuery } from "../../../Features/Api/exclusiveApi.js";
 
 const BestSelling = () => {
-  const { data, error, isLoading } = useGetBestSellingProductQuery();
+  const { isLoading, data, isError } = useGetBestSellingProductQuery();
 
-  const Alldata = data?.data.map((item) => {
+  const bestSellilngProduct = data?.data?.map((item) => {
     return item.product;
   });
+
+  console.log(data);
 
   return (
     <div className="border-b-black_363738/80 border-b-2 pb-[60px]">
@@ -18,7 +19,7 @@ const BestSelling = () => {
         tittle={"This Month"}
         description={"Best Selling Products"}
         SlidshowNumber={4}
-        ComponentData={data ? Alldata : []}
+        ComponentData={bestSellilngProduct}
         isLoading={isLoading}
         IsButton={true}
         autoplay={true}

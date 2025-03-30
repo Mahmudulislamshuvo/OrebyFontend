@@ -31,8 +31,6 @@ const ProductCart = ({ ItemData, isLoading }) => {
     }
   };
 
-  // const CartItems = useSelector((state) => state?.cart?.value);
-
   return (
     <div>
       <div className="container">
@@ -72,7 +70,7 @@ const ProductCart = ({ ItemData, isLoading }) => {
           <div>
             <div className="p-4">
               <h3 className="truncate font-poppins text-base font-medium text-text2_black_full">
-                {ItemData?.name ? ItemData.name : "ProductName"}
+                {ItemData?.name ? ItemData?.name : "ProductName"}
               </h3>
               <div className="mt-2 flex items-center gap-2">
                 <span className="font-poppins text-base font-medium text-red_DB4444">
@@ -89,14 +87,14 @@ const ProductCart = ({ ItemData, isLoading }) => {
                 </span>
               </div>
               <div className="mt-2 flex items-center gap-1 text-center">
-                <Star rating={ItemData?.rating ? ItemData.rating : "4"} />
+                <Star rating={ItemData?.rating ? ItemData?.rating : "4"} />
                 {/* {[...new Array(5)].map((_, index) => (
                 <span className="flex text-YellowStart_FFAD33">
                   <FaStar />
                 </span>
               ))} */}
                 <span className="block font-poppins text-sm font-semibold opacity-50">
-                  {`(${ItemData?.review ? ItemData.review.length : `00`})`}
+                  {`(${ItemData?.review ? ItemData?.review.length : `00`})`}
                 </span>
               </div>
             </div>

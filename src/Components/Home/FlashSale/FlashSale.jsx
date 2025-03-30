@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCommonLayout from "../../CommonComponents/ProductCommonLayout";
 import ProductCart from "../../CommonComponents/ProductCart";
 import { useGetAllProductQuery } from "../../../Features/Api/PtoductApi";
 import { useGetAllProductDetailsQuery } from "../../../Features/Api/exclusiveApi";
 
 const FlashSale = () => {
-  const { data, error, isLoading } = useGetAllProductDetailsQuery();
-  const AllFlaseSaleProduct = data?.data?.map((item) => {
+  const { data, isError, isLoading } = useGetAllProductDetailsQuery();
+  const [Data, setData] = useState(null);
+
+  const FlashSellProduct = data?.data?.map((item) => {
     return item.product;
   });
+
+  // todo: Note: If product deleted catch should revalidate or something else
+  // todo: Another problem if flashSale empty it will give Error
 
   return (
     <div className="container">
@@ -22,7 +27,7 @@ const FlashSale = () => {
           Isarrow={true}
           SlidshowNumber={4}
           autoplay={true}
-          ComponentData={AllFlaseSaleProduct ? AllFlaseSaleProduct : []}
+          ComponentData={FlashSellProduct}
           isLoading={isLoading}
         />
         <div className="mb-15 mt-[60px] flex items-center justify-center text-center">

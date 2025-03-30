@@ -53,7 +53,6 @@ const Try = () => {
 
   return (
     <div className="bg-white">
-      <p>j</p>
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-6 py-3">
