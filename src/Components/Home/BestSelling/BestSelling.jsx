@@ -10,8 +10,6 @@ const BestSelling = () => {
     return item.product;
   });
 
-  console.log(data);
-
   return (
     <div className="border-b-black_363738/80 border-b-2 pb-[60px]">
       <ProductCommonLayout
