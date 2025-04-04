@@ -68,8 +68,6 @@ const Checkout = () => {
     });
   };
 
-  console.log(userinfo);
-
   const handleOnlinePayment = () => {
     setUserinfo({
       ...userinfo,
