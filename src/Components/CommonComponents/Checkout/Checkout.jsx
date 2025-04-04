@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SuccessToast } from "../../../helpers/Toastify";
 import { useGetusercartItemQuery } from "../../../Features/Api/exclusiveApi";
 import { axiosinstance } from "../../../helpers/axios";
+import CheckoutSkeleton from "../Skeletons/CheckoutSkeliton";
 
 const Checkout = () => {
   const { isLoading, data, iserror } = useGetusercartItemQuery();
@@ -35,6 +36,10 @@ const Checkout = () => {
     totalamount: 289.97,
   };
 
+  if (isLoading) {
+    return <CheckoutSkeleton />;
+  }
+
   const [loading, setloading] = useState(false);
   const [dataField] = useState([
     "address1",
@@ -48,9 +53,9 @@ const Checkout = () => {
 
   // Dummy user data
   const [userinfo, setUserinfo] = useState({
-    firstName: userinfoFromLocal.firstName,
-    email: userinfoFromLocal.email,
-    mobile: userinfoFromLocal.mobile,
+    firstName: userinfoFromLocal?.firstName,
+    email: userinfoFromLocal?.email,
+    mobile: userinfoFromLocal?.mobile,
     address1: "123 Main St",
     address2: "Apt 4B",
     town: "Springfield",
@@ -61,6 +66,7 @@ const Checkout = () => {
   });
 
   const handleChange = (e) => {
+    const nevigate = useNavigate();
     const { name, value } = e.target;
     setUserinfo({
       ...userinfo,
@@ -97,15 +103,17 @@ const Checkout = () => {
             postCode: userinfo.postalcode,
           },
           paymentinfo: {
-            paymentMethod: "online",
+            paymentMethod: userinfo.payementmethod || "online",
           },
         },
         { withCredentials: "includes" },
       );
+
       if (response?.data?.data?.GatewayPageURL) {
         window.location.href = response.data.data.GatewayPageURL;
       } else {
         SuccessToast("Your order Placed Successfully!");
+        window.location.href = "/addtocart";
       }
     } catch (error) {
       console.log("error from place order", error);
@@ -143,7 +151,7 @@ const Checkout = () => {
                   </h2>
 
                   <div className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2">
-                    {userField.map((item) => (
+                    {userField?.map((item) => (
                       <div key={item}>
                         <input
                           type={
@@ -162,7 +170,7 @@ const Checkout = () => {
                         />
                       </div>
                     ))}
-                    {dataField.map((item) => (
+                    {dataField?.map((item) => (
                       <div key={item}>
                         <input
                           type={item === "postalcode" ? "number" : "text"}
