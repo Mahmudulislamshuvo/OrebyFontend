@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { SuccessToast } from "../../../helpers/Toastify";
-import {
-  useGetAllOrdersQuery,
-  useGetusercartItemQuery,
-} from "../../../Features/Api/exclusiveApi";
+import { useGetusercartItemQuery } from "../../../Features/Api/exclusiveApi";
 import { axiosinstance } from "../../../helpers/axios";
 import CheckoutSkeleton from "../Skeletons/CheckoutSkeliton";
 
@@ -134,6 +131,7 @@ const Checkout = () => {
   if (isLoading) {
     return <CheckoutSkeleton />;
   }
+  log;
 
   return (
     <div className="container my-10">
