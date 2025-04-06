@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SuccessToast } from "../../../helpers/Toastify";
-import { useGetusercartItemQuery } from "../../../Features/Api/exclusiveApi";
+import {
+  useGetAllOrdersQuery,
+  useGetusercartItemQuery,
+} from "../../../Features/Api/exclusiveApi";
 import { axiosinstance } from "../../../helpers/axios";
 import CheckoutSkeleton from "../Skeletons/CheckoutSkeliton";
 
 const Checkout = () => {
   const { isLoading, data, iserror } = useGetusercartItemQuery();
+
   const CartItemUserDetails = data?.data?.AllcartItem[0]?.user;
   // get data from Local storage
   const userinfoFromLocal = JSON.parse(localStorage.getItem("user"));
@@ -36,10 +40,6 @@ const Checkout = () => {
     totalamount: 289.97,
   };
 
-  if (isLoading) {
-    return <CheckoutSkeleton />;
-  }
-
   const [loading, setloading] = useState(false);
   const [dataField] = useState([
     "address1",
@@ -66,7 +66,6 @@ const Checkout = () => {
   });
 
   const handleChange = (e) => {
-    const nevigate = useNavigate();
     const { name, value } = e.target;
     setUserinfo({
       ...userinfo,
@@ -132,6 +131,10 @@ const Checkout = () => {
     }
   };
 
+  if (isLoading) {
+    return <CheckoutSkeleton />;
+  }
+
   return (
     <div className="container my-10">
       <div className="font-popins bg-white">
@@ -151,8 +154,8 @@ const Checkout = () => {
                   </h2>
 
                   <div className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2">
-                    {userField?.map((item) => (
-                      <div key={item}>
+                    {userField?.map((item, index) => (
+                      <div key={index}>
                         <input
                           type={
                             item === "mobile"

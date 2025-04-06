@@ -73,10 +73,14 @@ export const exclusiveApi = createApi({
     GetAllProduct: builder.query({
       query: () => "/product",
     }),
+    GetAllOrders: builder.query({
+      query: () => "/order",
+    }),
   }),
 });
 
 export const {
+  useGetAllOrdersQuery,
   useGetAllProductQuery,
   useGetallBannerQuery,
   useGetAllProductDetailsQuery,

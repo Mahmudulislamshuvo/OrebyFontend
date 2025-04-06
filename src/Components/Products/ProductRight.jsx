@@ -70,7 +70,10 @@ const ProductRight = ({ categoryid }) => {
         <div className="flex flex-wrap justify-between gap-y-5">
           {isLoading ? (
             [...new Array(9)].map((_, index) => (
-              <div className="flex flex-wrap justify-between gap-y-5">
+              <div
+                key={index}
+                className="flex flex-wrap justify-between gap-y-5"
+              >
                 <ProductCartSkeleton />
               </div>
             ))

@@ -101,7 +101,7 @@ const Navbar = () => {
               {NavMenu?.map((nav) => (
                 <li
                   className="border-b-[4px] border-transparent transition-all hover:border-[rgba(0,0,0,0.5)] hover:text-red_DB4444"
-                  key={"Nav"}
+                  key={nav.id}
                 >
                   <NavLink
                     to={`${nav.pathRoute}`}
@@ -146,11 +146,12 @@ const Navbar = () => {
               </Link> */}
               <Link
                 to={"/addtocart"}
-                data-cartTotalItem={isLoading ? "0" : UserCartItems.length}
+                data-carttotalitem={isLoading ? "0" : UserCartItems.length}
                 className="cartNotification relative cursor-pointer"
               >
                 <RiShoppingCart2Line />
               </Link>
+
               <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-red_DB4444 text-center text-xl text-whitesmoke_F5F5F5">
                 <span
                   onClick={AccountDetails}
