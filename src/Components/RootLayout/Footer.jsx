@@ -5,6 +5,7 @@ import Appstore from "../../assets/Footer/AppStore.png";
 import { RiFacebookLine, RiLinkedinLine } from "react-icons/ri";
 import { CiInstagram, CiTwitter } from "react-icons/ci";
 import { FaRegCopyright } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -76,9 +77,12 @@ const Footer = () => {
             <p className="cursor-pointer pb-4 font-poppins text-[16px] leading-8 text-whiteColor">
               FAQ
             </p>
-            <p className="cursor-pointer pb-4 font-poppins text-[16px] leading-8 text-whiteColor">
+            <Link
+              to={"/contactus"}
+              className="cursor-pointer pb-4 font-poppins text-[16px] leading-8 text-whiteColor"
+            >
               Contact
-            </p>
+            </Link>
           </div>
           <div className="">
             <h2 className="pb-6 font-inter text-2xl font-bold tracking-[3px] text-whiteColor">

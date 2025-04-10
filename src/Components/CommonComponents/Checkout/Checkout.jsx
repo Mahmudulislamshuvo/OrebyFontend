@@ -131,7 +131,6 @@ const Checkout = () => {
   if (isLoading) {
     return <CheckoutSkeleton />;
   }
-  log;
 
   return (
     <div className="container my-10">
